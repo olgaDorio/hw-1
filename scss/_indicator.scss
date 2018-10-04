@@ -1,0 +1,17 @@
+.indicator__group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  font-size: var(--card-tiny-text);
+}
+
+.indicator {
+  font-weight: normal;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  color: #000000;
+  align-items: baseline;
+}
+
+.indicator__value {
+  font-weight: bold;
+}

@@ -1,0 +1,58 @@
+$base-size: 53px;
+$color: rgba(161, 161, 161, .84);
+
+.player {
+  &__albumcover {
+    border-radius: 8px;
+  }
+
+  &__control {
+    background: transparent;
+    border-radius: 50%;
+  }
+
+  &__column {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    margin: 0 16px;
+    width: 100%;
+  }
+
+  &__artist {
+    color: var(--black);
+    font-size: 20px; // TODO / 18px
+    margin-bottom: auto;
+  }
+
+  &__row {
+    align-items: flex-end;
+    display: flex;
+    height: $base-size;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  &__row + &__row {
+    align-items: center;
+  }
+
+  &__control,
+  &__albumcover {
+    flex-shrink: 0;
+    height: $base-size;
+    width: $base-size;
+  }
+
+  &__control + &__control {
+    margin-left: 27px; // 20px
+  }
+
+  &__duration,
+  &__volume {
+    color: $color;
+    flex: 0 0 28px;
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,142 @@
+@import "_link.scss";
+@import "_button.scss";
+@import "_card.scss";
+@import "_range.scss";
+@import "_indicator.scss";
+@import "_player.scss";
+
+:root {
+  --red: #DB5341;
+  --coal: #333333;
+  --black: #000000;
+  --white: #ffffff;
+  --yellow: #FFD93E;
+  --light-grey: #FAFAFA;
+  --dark-grey: #F3F3F3;
+  --border: 1px solid #F0F0F0;
+  --box-shadow: 0 2px 6px 0 rgba(197,186,186,0.50);
+}
+
+@media (min-width: 375px) {
+  :root {
+    --button-height: calc(2.75rem + ((1vw - 3.75px) * 0.6472));
+    --card-big-text: calc(0.875rem + ((1vw - 3.75px) * 0.6472));
+    --card-medium-text: calc(1.125rem + ((1vw - 3.75px) * 0.1294));
+    --card-medium-text-cr: calc(1.125rem + ((1vw - 3.75px) * 0.3883));
+    --card-small-text: calc(0.75rem + ((1vw - 3.75px) * 0.3883));
+    --card-tiny-text: calc(0.875rem + ((1vw - 3.75px) * 0.2589));
+    --title-font-size: calc(1.5rem + ((1vw - 3.75px) * 0.7767));
+
+
+  }
+}
+
+@media (min-width: 1370px) {
+  :root {
+    --button-height: 54px;
+    --card-big-text: 24px;
+    --card-medium-text: 20px;
+    --card-medium-text-cr: 24px;
+    --card-small-text: 18px;
+    --card-small-text: 18px;
+    --card-tiny-text: 18px;
+    --title-font-size: 36px;
+  }
+}
+
+body {
+  font-family: Arial, sans-serif;
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+}
+
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &__header {
+    align-items: flex-end;
+    border-bottom: var(--border);
+    display: flex;
+    overflow: hidden;
+    padding: 1.5% 3.1%;
+
+    @media (max-width: 910px) {
+      border-bottom: 0;
+      padding: 22px 20px;
+
+      &::after {
+        align-self: center;
+        background: url("/../assets/icon_list_m.png");
+        content: '';
+        cursor: pointer;
+        display: block;
+        height: 14px;
+        margin-left: auto;
+        width: 16px;
+      }
+    }
+  }
+
+  &__footer {
+    align-items: center;
+    border-top: var(--border);
+    box-sizing: border-box;
+    display: flex;
+    flex: 0 0 64px;
+    overflow: hidden;
+    padding: 0 40px;
+
+    @media (max-width: 910px) {
+      display: none;
+    }
+  }
+
+  &__main {
+    @media (max-width: 910px) {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      overflow-x: hidden;
+      padding: 20px;
+
+      > * {
+        flex-shrink: 0;
+        margin: 8px 0;
+      }
+    }
+
+    box-sizing: border-box;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: auto repeat(auto-fill, minmax(min-content, 170px));
+    height: 100%;
+    overflow: auto;
+    padding: 0 12.6%;
+  }
+}
+
+.separate {
+  margin-left: auto;
+}
+
+.title {
+  color: var(--coal);
+  font-size: var(--title-font-size);
+  grid-column: span 6;
+  margin: 32px 0;
+  width: 100%;
+
+  @media (max-width: 910px) {
+    margin: 8px 0;
+  }
+}
+
+.icon {
+  height: auto;
+  margin-right: 20px;
+  max-width: 100%;
+}
