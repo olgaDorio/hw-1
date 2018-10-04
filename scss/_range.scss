@@ -64,7 +64,7 @@ $line-border-radius: 2px;
 
   &::-ms-track {
     color: transparent;
-    @include track($background-dark, $line-border-radius, $height-big);
+    @include track($background-dark, $line-border-radius, $height-small);
   }
 
   &::-ms-thumb {
@@ -96,7 +96,7 @@ $line-border-radius: 2px;
 
   &::-ms-track {
     color: transparent;
-    @include track($background-dark, $line-border-radius, $height-big);
+    @include track($background-light, $line-border-radius, $height-big);
   }
 
   &::-ms-thumb {
