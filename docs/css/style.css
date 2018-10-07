@@ -106,6 +106,9 @@
     .icon:not(.icon--logo) {
       max-width: 35px;
       max-height: 35px; } }
+  .icon--logo {
+    height: 27px;
+    width: 108px; }
 
 .button {
   -webkit-box-align: center;
