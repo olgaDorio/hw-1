@@ -1,4 +1,4 @@
 # Адаптивная верстка
 
-change `events.js`
+change `events.js`    
 run `npm run dev` or `npm run build`
