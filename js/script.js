@@ -6,7 +6,7 @@ const isTouchDevice = () => (
   !!navigator.maxTouchPoints && 'ontouchstart' in window
 );
 
-const showProperImages = () => {
+const showTouchNodes = () => {
   const isMobile = isTouchDevice();
   root.classList[isMobile ? 'add' : 'remove']('no-hover');
 
@@ -31,6 +31,7 @@ const addTouchListener = ({
   const minBrightness = 0.3;
   const maxBrightness = 1;
   const brightnessStep = 0.05;
+  const scrollSpeed = 25;
 
   let currentLeft = 0;
   let brightness = 1;
@@ -68,10 +69,18 @@ const addTouchListener = ({
 
   const scrollForward = () => {
     if (currentLeft < 0) return;
-    const value = currentLeft - 35;
+    const value = currentLeft - scrollSpeed;
     setLeft(value > 0 ? value : currentLeft - 1);
     requestAnimationFrame(scrollForward);
   }
+
+  const scrollBack = () => {
+    const maxLeft = -1 * (imageNode.offsetWidth - targetNode.offsetWidth);
+    if (currentLeft > maxLeft) return;
+    const value = currentLeft + scrollSpeed;
+    setLeft(value < maxLeft ? value : currentLeft + 1);
+    requestAnimationFrame(scrollBack)
+  };
 
   const setLeft = (value) => {
     currentLeft = value;
@@ -83,14 +92,6 @@ const addTouchListener = ({
     brightness = value;
     imageNode.style.filter = `brightness(${brightness})`;
     brightnessInfo.innerHTML = `${Math.round(brightness * 100)}%`;
-  };
-
-  const scrollBack = () => {
-    const maxLeft = -1 * (imageNode.offsetWidth - targetNode.offsetWidth);
-    if (currentLeft > maxLeft) return;
-    const value = currentLeft + 35;
-    setLeft(value < maxLeft ? value : currentLeft + 1);
-    requestAnimationFrame(scrollBack)
   };
 
   const calcDistance = (A, B) => {
@@ -107,9 +108,7 @@ const addTouchListener = ({
 
     if (amount === 1) {
       changeLeftPosition(e);
-    }
-
-    if (amount === 2) {
+    } else if (amount === 2) {
       touches[e.pointerId] = e;
       changeBrightness();
     }
@@ -132,6 +131,7 @@ const addTouchListener = ({
   targetNode.addEventListener('pointerdown', onpointerdown);
   targetNode.addEventListener('pointermove', onpointermove);
   targetNode.addEventListener('pointerup', onpointerup);
+  targetNode.addEventListener('pointercancel', onpointerup);
 };
 
 addTouchListener({
@@ -141,5 +141,5 @@ addTouchListener({
   brightnessInfo: document.querySelector('.brightness'),
 })
 
-showProperImages()
-window.addEventListener('resize', showProperImages);
+showTouchNodes()
+window.addEventListener('resize', showTouchNodes);
