@@ -39,8 +39,8 @@ body
 
               if buttons
                 .button__group
-                  .button.button--active #{buttons[0]}
-                  .button #{buttons[1]}
+                  button.button.button--active #{buttons[0]}
+                  button.button #{buttons[1]}
 
               else if type === "graph"
                 img.card__image(
@@ -92,7 +92,7 @@ body
                     button.button.player__control
                       img(src="assets/prev.svg", style="transform: rotate(-180deg)")
                     .player__column
-                      input.range.range--round(type="range")
+                      input.range.range--round(type="range", min="0", max="100", value=volume)
                     .player__volume #{volume}%
 
     footer.page__footer
