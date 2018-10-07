@@ -8,18 +8,21 @@
   box-sizing: border-box;
   color: #000000;
   cursor: pointer;
-  display: inline-flex;
+  display: flex;
   font-size: 20px;
   font-weight: bold !important;
   font-weight: inherit;
+  height: var(--button-height);
   justify-content: center;
   margin: initial;
+  max-width: 132px;
   outline: initial;
-  padding: 0;
+  padding: 10px 20px;
   pointer-events: auto;
   text-decoration: initial;
   text-transform: capitalize;
   transition: all 0.2s;
+  width: 100%;
 
   &__group {
     display: flex;
@@ -28,14 +31,6 @@
   & + & {
     margin-left: 20px;
   }
-
-  padding: 10px 20px;
-  width: 100%;
-  max-width: 132px;
-  height: var(--button-height);
-  display: flex;
-  justify-content: center;
-  align-items: center;
 
   @media (max-width: 910px) {
     &__group {

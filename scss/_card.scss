@@ -72,6 +72,11 @@
     }
   }
 
+  &--critical &__body {
+    padding: 20px;
+    margin-top: -20px;
+  }
+
   &:not(&--critical) &__body {
     padding-top: 0px !important;
   }
@@ -137,11 +142,6 @@
     background: var(--red);
     color: var(--white);
     padding-bottom: 40px;
-  }
-
-  &--critical &__body {
-    padding: 20px;
-    margin-top: -20px;
   }
 
   &__control {

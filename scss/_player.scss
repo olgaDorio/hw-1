@@ -9,6 +9,9 @@ $color: rgba(161, 161, 161, .84);
   &__control {
     background: transparent;
     border-radius: 50%;
+    height: 52px;
+    padding: 0;
+    width: 52px;
   }
 
   &__column {
@@ -43,12 +46,6 @@ $color: rgba(161, 161, 161, .84);
     flex-shrink: 0;
     height: $base-size;
     width: $base-size;
-  }
-
-  &__control {
-    width: 52px;
-    height: 52px;
-    padding: 0;
   }
 
   &__control + &__control {
