@@ -9,7 +9,7 @@ head
 body
   .page
     header.page__header
-      img.icon.logo(src="/assets/logo.png")
+      img.icon.logo(src="assets/logo.png")
       a.link.link--active(href="#") События
       a.link(href="#") Сводка
       a.link(href="#") Устройства
@@ -23,7 +23,7 @@ body
           button.button.card__control
           .card__header
             .card__title
-              img.icon(src="/assets/" + event.icon + '.svg')
+              img.icon(src="assets/" + event.icon + '.svg')
               span= event.title
             .card__subtitle
               div= event.source
@@ -44,22 +44,22 @@ body
 
               else if type === "graph"
                 img.card__image(
-                  srcset="/assets/chart.png 320w, /assets/chart2.png 480w, /assets/chart3.png 800w",
+                  srcset="assets/chart.png 320w, assets/chart2.png 480w, assets/chart3.png 800w",
                   sizes="(max-width: 320px) 280px, (max-width: 480px) 440px, 800px",
-                  src="/assets/chart3.png")
+                  src="assets/chart3.png")
 
               else if image
                 img.card__image.show-on-desktop(
-                  srcset="/assets/bitmap.png 820w, /assets/bitmap2.png 1664w, /assets/bitmap3.png 2496w",
+                  srcset="assets/bitmap.png 820w, assets/bitmap2.png 1664w, assets/bitmap3.png 2496w",
                   sizes="(max-width: 820w) 820px, (max-width: 1664w) 1664px, 2496px",
-                  src="/assets/bitmap3.png")
+                  src="assets/bitmap3.png")
                 .image-m__container.show-on-touch
                   img.card__image.image-m(
                     draggable="false",
                     ondragstart="return false;",
-                    srcset="/assets/bitmap.png 820w, /assets/bitmap2.png 1664w, /assets/bitmap3.png 2496w",
+                    srcset="assets/bitmap.png 820w, assets/bitmap2.png 1664w, assets/bitmap3.png 2496w",
                     sizes="(max-width: 820w) 820px, (max-width: 1664w) 1664px, 2496px",
-                    src="/assets/bitmap3.png")
+                    src="assets/bitmap3.png")
                   .image-m__track
                 .image-m__parameter.indicator__group.show-on-touch
                   .indicator
@@ -88,9 +88,9 @@ body
                     .player__duration #{track.length}
                   .player__row
                     button.button.player__control
-                      img(src="/assets/prev.svg")
+                      img(src="assets/prev.svg")
                     button.button.player__control
-                      img(src="/assets/prev.svg", style="transform: rotate(-180deg)")
+                      img(src="assets/prev.svg", style="transform: rotate(-180deg)")
                     .player__column
                       input.range.range--round(type="range")
                     .player__volume #{volume}%
