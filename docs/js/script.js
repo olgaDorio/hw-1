@@ -1,7 +1,7 @@
 const showOnDesktop = document.querySelectorAll('.show-on-desktop');
 const showOnMobile = document.querySelectorAll('.show-on-touch');
 
-const isTouchDevice = () => {
+const isTouchDevice = () => (
   !!(typeof window !== 'undefined' &&
     ('ontouchstart' in window ||
       (window.DocumentTouch &&
@@ -9,7 +9,7 @@ const isTouchDevice = () => {
         document instanceof window.DocumentTouch))) ||
   !!(typeof navigator !== 'undefined' &&
     (navigator.maxTouchPoints || navigator.msMaxTouchPoints))
-}
+)
 
 const showProperImages = () => {
   const isMobile = isTouchDevice();

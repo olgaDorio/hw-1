@@ -44,21 +44,21 @@ body
 
               else if type === "graph"
                 img.card__image(
-                  srcset="assets/chart.png 320w, assets/chart2.png 480w, assets/chart3.png 800w",
-                  sizes="(max-width: 320px) 280px, (max-width: 480px) 440px, 800px",
+                  srcset="assets/chart.png 590w, assets/chart2.png 1180w, assets/chart3.png 1770w",
+                  sizes="(max-width: 900px) 90vw, 30vw",
                   src="assets/chart3.png")
 
               else if image
                 img.card__image.show-on-desktop(
                   srcset="assets/bitmap.png 820w, assets/bitmap2.png 1664w, assets/bitmap3.png 2496w",
-                  sizes="(max-width: 820w) 820px, (max-width: 1664w) 1664px, 2496px",
+                  sizes="(max-width: 900px) 90vw, 30vw",
                   src="assets/bitmap3.png")
                 .image-m__container.show-on-touch
                   img.card__image.image-m(
                     draggable="false",
                     ondragstart="return false;",
                     srcset="assets/bitmap.png 820w, assets/bitmap2.png 1664w, assets/bitmap3.png 2496w",
-                    sizes="(max-width: 820w) 820px, (max-width: 1664w) 1664px, 2496px",
+                    sizes="(max-width: 900px) 90vw, 30vw",
                     src="assets/bitmap3.png")
                   .image-m__track
                 .image-m__parameter.indicator__group.show-on-touch
