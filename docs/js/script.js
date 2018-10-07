@@ -28,15 +28,14 @@ const addTouchListener = ({
   const touches = {};
 
   const minLeft = 0;
-  const minBrightness = 0.7;
-  const maxBrightness = 1.3;
-  const brightnessStep = 0.01;
+  const minBrightness = 0.3;
+  const maxBrightness = 1;
+  const brightnessStep = 0.05;
 
   let currentLeft = 0;
   let brightness = 1;
 
   let prevYDiff = null;
-
 
   const angleDeg = ([p1, p2]) => (
     Math.atan2(p2.pageY - p1.pageY, p2.pageX - p1.pageX) * 180 / Math.PI
@@ -67,24 +66,6 @@ const addTouchListener = ({
     touches[e.pointerId] = e;
   };
 
-  const onpointerdown = (e) => {
-    touches[e.pointerId] = e;
-    targetNode.setPointerCapture(e.pointerId);
-  }
-
-  const onpointermove = (e) => {
-    const amount = Object.keys(touches).length;
-
-    if (amount === 1) {
-      changeLeftPosition(e);
-    }
-
-    if (amount === 2) {
-      touches[e.pointerId] = e;
-      changeBrightness();
-    }
-  };
-
   const scrollForward = () => {
     if (currentLeft < 0) return;
     const value = currentLeft - 35;
@@ -104,17 +85,37 @@ const addTouchListener = ({
     brightnessInfo.innerHTML = `${Math.round(brightness * 100)}%`;
   };
 
-
   const scrollBack = () => {
     const maxLeft = -1 * (imageNode.offsetWidth - targetNode.offsetWidth);
     if (currentLeft > maxLeft) return;
     const value = currentLeft + 35;
     setLeft(value < maxLeft ? value : currentLeft + 1);
     requestAnimationFrame(scrollBack)
-  }
+  };
+
+  const calcDistance = (A, B) => {
+    return Math.sqrt((B.pageX - A.pageX) * (B.pageX - A.pageX) + (B.pageY - A.pageY) * (B.pageY - A.pageY)) * -1;
+  };
+
+  const onpointerdown = (e) => {
+    touches[e.pointerId] = e;
+    targetNode.setPointerCapture(e.pointerId);
+  };
+
+  const onpointermove = (e) => {
+    const amount = Object.keys(touches).length;
+
+    if (amount === 1) {
+      changeLeftPosition(e);
+    }
+
+    if (amount === 2) {
+      touches[e.pointerId] = e;
+      changeBrightness();
+    }
+  };
 
   const onpointerup = ({ pointerId }) => {
-
     if (currentLeft > 0) {
       scrollForward();
     } else if (Math.abs(currentLeft) > imageNode.offsetWidth - targetNode.offsetWidth) {
@@ -125,6 +126,8 @@ const addTouchListener = ({
       delete touches[key];
     });
   };
+
+  if (!targetNode || !imageNode || !sliderX || !brightnessInfo) return;
 
   targetNode.addEventListener('pointerdown', onpointerdown);
   targetNode.addEventListener('pointermove', onpointermove);
