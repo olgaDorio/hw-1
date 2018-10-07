@@ -1,27 +1,23 @@
+const root = document.querySelector('.page');
 const showOnDesktop = document.querySelectorAll('.show-on-desktop');
 const showOnMobile = document.querySelectorAll('.show-on-touch');
 
 const isTouchDevice = () => (
-  !!(typeof window !== 'undefined' &&
-    ('ontouchstart' in window ||
-      (window.DocumentTouch &&
-        typeof document !== 'undefined' &&
-        document instanceof window.DocumentTouch))) ||
-  !!(typeof navigator !== 'undefined' &&
-    (navigator.maxTouchPoints || navigator.msMaxTouchPoints))
-)
+  !!navigator.maxTouchPoints && 'ontouchstart' in window
+);
 
 const showProperImages = () => {
   const isMobile = isTouchDevice();
+  root.classList[isMobile ? 'add' : 'remove']('no-hover');
 
   showOnDesktop.forEach((node) => {
-    node.style.display = isMobile ? 'none' : 'block';
+    node.classList[isMobile? 'add' : 'remove']('hidden');
   });
 
   showOnMobile.forEach((node) => {
-    node.style.display = isMobile ? 'block' : 'none';
+    node.classList[isMobile? 'remove' : 'add']('hidden');
   })
-}
+};
 
 const addTouchListener = ({
   targetNode,

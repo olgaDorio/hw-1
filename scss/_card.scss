@@ -166,12 +166,12 @@
     background-image: url("./../assets/cross-white.svg");
   }
 
-  &:hover {
+  .page:not(.no-hover) &:hover {
     background: var(--dark-grey);
     box-shadow: var(--box-shadow);
   }
 
-  &:hover &__control {
+  .page:not(.no-hover) &:hover &__control {
     display: block;
   }
 }
