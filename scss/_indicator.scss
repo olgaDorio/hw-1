@@ -1,15 +1,22 @@
 .indicator__group {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
   font-size: var(--card-tiny-text);
+  margin-top: 22px;
+  @media (max-width: 910px) {
+    margin-top: 25px;
+  }
+}
+
+.indicator--separate {
+  justify-content: flex-end;
 }
 
 .indicator {
-  font-weight: normal;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  color: #000000;
   align-items: baseline;
+  color: var(--black);
+  display: flex;
+  flex: 0 0 50%;
+  font-weight: normal;
 }
 
 .indicator__value {

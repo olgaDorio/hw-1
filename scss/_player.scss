@@ -22,7 +22,7 @@ $color: rgba(161, 161, 161, .84);
 
   &__artist {
     color: var(--black);
-    font-size: 20px; // TODO / 18px
+    font-size: var(--player-artist);
     margin-bottom: auto;
   }
 
@@ -45,8 +45,18 @@ $color: rgba(161, 161, 161, .84);
     width: $base-size;
   }
 
+  &__control {
+    width: 52px;
+    height: 52px;
+    padding: 0;
+  }
+
   &__control + &__control {
-    margin-left: 27px; // 20px
+    margin-left: 27px;
+
+    @media (max-width: 910px) {
+      margin-left: 20px;
+    }
   }
 
   &__duration,

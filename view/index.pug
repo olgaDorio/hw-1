@@ -43,10 +43,31 @@ body
                   .button #{buttons[1]}
 
               else if type === "graph"
-                img.card__image(src="/assets/chart.png")
+                img.card__image(
+                  srcset="/assets/chart.png 320w, /assets/chart2.png 480w, /assets/chart3.png 800w",
+                  sizes="(max-width: 320px) 280px, (max-width: 480px) 440px, 800px",
+                  src="/assets/chart3.png")
 
               else if image
-                img.card__image(src="/assets/bitmap.png")
+                img.card__image.show-on-desktop(
+                  srcset="/assets/bitmap.png 820w, /assets/bitmap2.png 1664w, /assets/bitmap3.png 2496w",
+                  sizes="(max-width: 820w) 820px, (max-width: 1664w) 1664px, 2496px",
+                  src="/assets/bitmap3.png")
+                .image-m__container.show-on-touch
+                  img.card__image.image-m(
+                    draggable="false",
+                    ondragstart="return false;",
+                    srcset="/assets/bitmap.png 820w, /assets/bitmap2.png 1664w, /assets/bitmap3.png 2496w",
+                    sizes="(max-width: 820w) 820px, (max-width: 1664w) 1664px, 2496px",
+                    src="/assets/bitmap3.png")
+                  .image-m__track
+                .image-m__parameter.indicator__group.show-on-touch
+                  .indicator
+                    | Приближение:&nbsp;
+                    .zoom 100%
+                  .indicator.indicator--separate
+                    | Яркость:&nbsp;
+                    .brightness 100%
 
               else if event.data && Object.keys(event.data).every(k => allowedKeys.includes(k))
                 .indicator__group
@@ -75,9 +96,11 @@ body
                     .player__volume #{volume}%
 
     footer.page__footer
-      .link.link--small Помощь
-      .link.link--small Обратная связь
-      .link.link--small Разработчикам
-      .link.link--small Условия использования
-      span.separate copyright
+      a.link.link--small(href="#") Помощь
+      a.link.link--small(href="#") Обратная связь
+      a.link.link--small(href="#") Разработчикам
+      a.link.link--small(href="#") Условия использования
+      a.link.link--small(href="https://wiki.yandex.ru/shri-2018-II/homework/Adaptivnaja-vjorstka/.files/license.pdf", target="_blank").separate © 2001–2017  ООО «Яндекс»
+
+  script(src="js/script.js")
 

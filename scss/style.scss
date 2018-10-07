@@ -4,6 +4,7 @@
 @import "_range.scss";
 @import "_indicator.scss";
 @import "_player.scss";
+@import "_image-m.scss";
 
 :root {
   --red: #DB5341;
@@ -26,8 +27,7 @@
     --card-small-text: calc(0.75rem + ((1vw - 3.75px) * 0.3883));
     --card-tiny-text: calc(0.875rem + ((1vw - 3.75px) * 0.2589));
     --title-font-size: calc(1.5rem + ((1vw - 3.75px) * 0.7767));
-
-
+    --player-artist: calc(1.125rem + ((1vw - 3.75px) * 0.201));
   }
 }
 
@@ -38,9 +38,9 @@
     --card-medium-text: 20px;
     --card-medium-text-cr: 24px;
     --card-small-text: 18px;
-    --card-small-text: 18px;
     --card-tiny-text: 18px;
     --title-font-size: 36px;
+    --player-artist: 20px;
   }
 }
 
@@ -61,7 +61,7 @@ body {
     border-bottom: var(--border);
     display: flex;
     overflow: hidden;
-    padding: 1.5% 3.1%;
+    padding: 37px 42px;
 
     @media (max-width: 910px) {
       border-bottom: 0;
@@ -120,7 +120,7 @@ body {
 }
 
 .separate {
-  margin-left: auto;
+  margin-left: auto !important;
 }
 
 .title {

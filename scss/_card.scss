@@ -28,6 +28,12 @@
     width: 100%;
   }
 
+  @supports (-ms-ime-align: auto) {
+    &__header &__title > span {
+      white-space: nowrap;
+    }
+  }
+
   &__header &__subtitle {
     display: flex;
     font-size: var(--card-small-text);
@@ -110,6 +116,8 @@
   &--s &__header &__subtitle,
   &--small &__header &__subtitle {
     display: contents;
+    flex-direction: column;
+    margin-top: 20px;
   }
 
   &--critical &__header {
@@ -125,6 +133,7 @@
 
   &__control {
     display: none;
+    padding: 0;
   }
 
   &__control,
@@ -133,29 +142,27 @@
     background-position: center center;
     background-repeat: no-repeat;
     background-size: contain;
-    height: 17px;
     position: absolute;
-    width: 17px;
   }
 
   &__control:first-of-type {
     background-image: url("./../assets/cross.svg");
     right: 20px;
     top: 20px;
+    height: 15px;
+    width: 15px;
   }
 
   &__control:last-of-type {
     background-image: url("./../assets/next.svg");
     bottom: 20px;
     right: 20px;
+    height: 17px;
+    width: 11px;
   }
 
   &--critical &__control:first-of-type {
     background-image: url("./../assets/cross-white.svg");
-  }
-
-  &--critical &__control:last-of-type {
-    background-image: url("./../assets/next-white.svg");
   }
 
   &:hover {
