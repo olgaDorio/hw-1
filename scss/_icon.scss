@@ -4,7 +4,9 @@
   max-width: 100%;
 
   @media (max-width: 910px) {
-    max-width: 35px;
-    max-height: 35px;
+    &:not(&--logo) {
+      max-width: 35px;
+      max-height: 35px;
+    }
   }
 }

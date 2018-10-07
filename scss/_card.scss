@@ -72,6 +72,10 @@
     }
   }
 
+  &:not(&--critical) &__body {
+    padding-top: 0px !important;
+  }
+
   &--s {
     grid-column: span 2;
   }
@@ -92,8 +96,16 @@
   &--s &__header {
     display: grid;
     grid-gap: 20px;
-    padding-bottom: 0;
     margin-bottom: 0;
+
+    @supports (-ms-ime-align:auto) {
+      display:flex;
+      flex-direction: column;
+    }
+
+    @media (max-width: 910px) {
+      display: block;
+    }
   }
 
   &--small {
