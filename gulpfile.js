@@ -5,7 +5,7 @@ const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
 const { events } = require('./events.json')
 
-const destDir = 'public';
+const destDir = 'docs';
 
 function errorHandling(error) {
     console.log(error.message);
