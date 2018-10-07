@@ -1,5 +1,6 @@
 @import "_link.scss";
 @import "_page.scss";
+@import "_icon.scss";
 @import "_button.scss";
 @import "_card.scss";
 @import "_range.scss";
@@ -62,12 +63,6 @@ body {
   @media (max-width: 910px) {
     margin: 8px 0;
   }
-}
-
-.icon {
-  height: auto;
-  margin-right: 20px;
-  max-width: 100%;
 }
 
 .hidden {
