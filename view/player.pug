@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+html(lang="en")
+head
+  meta(name="robots", content="noindex")
+  meta(name="viewport", content="width=device-width,maximum-scale=1,initial-scale=1")
+  meta(charset="UTF-8")
+  title Яндекс Дом
+  link(rel="stylesheet", href="css/style.css")
+  link(rel="stylesheet", href="css/video.css")
+  script(src="https://cdn.jsdelivr.net/npm/hls.js@latest")
+body
+  .page
+    header.page__header
+      img.icon.icon--logo(src="assets/logo.png")
+      a.link.link--active(href="#") События
+      a.link(href="#") Сводка
+      a.link(href="#") Устройства
+      a.link(href="#") Сценарии
+    main.page__main.page__player
+      h1.title Видеонаблюдение
+      .video__container
+        .video__wrapper
+          video.video(autoplay, muted)
+        .video__wrapper
+          video.video(autoplay, muted)
+        .video__wrapper
+          video.video(autoplay, muted)
+        .video__wrapper
+          video.video(autoplay, muted)
+      .video__controls
+        button#back Все камеры
+        label
+          | Яркость
+          input#brightness(type="range", min="100", max="300", value="100", name="brightness")
+        label
+          | Контрастность
+          input#contrast(type="range", min="100", max="300", value="100", name="contrast")
+
+
+    footer.page__footer
+      a.link.link--small(href="#") Помощь
+      a.link.link--small(href="#") Обратная связь
+      a.link.link--small(href="#") Разработчикам
+      a.link.link--small(href="#") Условия использования
+      a.link.link--small(href="https://wiki.yandex.ru/shri-2018-II/homework/Adaptivnaja-vjorstka/.files/license.pdf", target="_blank").separate © 2001–2017  ООО «Яндекс»
+
+  script(src="js/init-hls.js")
+  script(src="js/player.js")
