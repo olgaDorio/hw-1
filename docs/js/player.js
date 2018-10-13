@@ -9,6 +9,10 @@ const ranges = document.querySelectorAll('input');
 const videoContainer = document.querySelector('.video__container');
 const hideButton = document.getElementById('back');
 
+const chartColors = {
+  background: '#FAFAFA',
+  fill: '#C5C5C5',
+};
 const filters = Array.from({length: 4}, () => ({
   brightness: 100,
   contrast: 100,
@@ -84,3 +88,55 @@ ranges.forEach((range) => {
     setFilterStyle(index);
   })
 });
+
+const canvas = document.getElementById('oscilloscope');
+const ctx = canvas.getContext('2d');
+
+videos.forEach((video, index) => {
+
+
+  video.addEventListener('loadeddata', () => {
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const analyser = audioCtx.createAnalyser();
+
+    const source = audioCtx.createMediaElementSource(video);
+    source.connect(analyser);
+    analyser.connect(audioCtx.destination);
+
+    analyser.fftSize = 256;
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+
+    const draw = () => {
+      requestAnimationFrame(draw);
+
+      if (!video.parentNode.classList.contains('video--open')) {
+        return;
+      }
+
+      analyser.getByteFrequencyData(dataArray);
+
+      const { width, height } = canvas;
+      const barWidth = (width / bufferLength) * 2.5;
+      let x = 0;
+
+      ctx.fillStyle = chartColors.background;
+      ctx.fillRect(0, 0, width, height);
+
+      dataArray.forEach((value) => {
+        // if !barHeight use different color
+        const barHeight = value / 2 + 10;
+        const y = height - barHeight;
+
+        ctx.fillStyle = chartColors.fill;
+        ctx.fillRect(x, height - barHeight, barWidth, barHeight);
+
+        x += barWidth + 1;
+      })
+    };
+
+    draw();
+  })
+})
+
+
