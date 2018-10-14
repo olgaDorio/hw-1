@@ -1,8 +1,3 @@
-canvas {
-  height: 50px;
-  width: 200px;
-}
-
 label {
   display: flex;
   flex-direction: column;
@@ -12,33 +7,84 @@ label {
   display: flex;
   flex-direction: column;
   padding-bottom: 0;
-
-  &--fullscreen {
-    position: absolute;
-
-    > *:first-child {
-      display: none;
-    }
-  }
 }
 
 .video {
-  background: black;
+  object-fit: cover;
   width: 100%;
   height: 100%;
 
-  &__controls {
-    display: none;
-    height: 100px;
+  &__chart {
+    height: 50px;
+    width: 200px;
   }
 
-  &__controls--shown {
+  &__controls {
+    padding: 10px;
+    box-sizing: border-box;
+    height: 100px;
+    min-height: 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+
+  }
+
+  &__controls > * {
+    transition: all 0.2s;
+    opacity: 0;
+
+
+  }
+
+  &__controls > *:first-child {
+    margin-right: auto;
+  }
+
+
+  &__controls > *:last-child {
+    margin-left: auto;
+  }
+
+  &__controls::before {
+    display: block;
+    content: 'Видеонаблюдение';
+    transition: opacity 0.2s, transform 0.2s, width 0.2s;
+    overflow: hidden;
+    font-size: var(--title-font-size);
+    opacity: 1;
+    width: 100%;
+    flex-shrink: 0;
+  }
+
+  &__controls--shown {
+    padding: 20px;
+
+    @media (max-width: 910px) {
+      height: initial;
+      flex-wrap: wrap;
+
+      > * {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }
+
+  &__controls--shown > * {
+    opacity: 1;
+  }
+
+  &__controls--shown::before {
+    opacity: 0;
+    width: 0;
+    flex-grow: 0;
+    transform: translateX(-100%);
   }
 
   &__container {
+
     width: 100%;
     display: grid;
     grid-template-columns: 50% 50%;
@@ -47,7 +93,10 @@ label {
   }
 
   &__wrapper {
-    background: magenta;
+    overflow: hidden;
+    background: var(--dark-grey);
+    border: 10px solid white;
+    border-radius: 20px;
     width: 100%;
     height: 100%;
     padding: 10px;

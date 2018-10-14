@@ -30,6 +30,7 @@
     --card-tiny-text: calc(0.875rem + ((1vw - 3.75px) * 0.2589));
     --title-font-size: calc(1.5rem + ((1vw - 3.75px) * 0.7767));
     --player-artist: calc(1.125rem + ((1vw - 3.75px) * 0.201));
+    --title-width: calc(8.625rem + ((1vw - 3.75px) * 12.2613));
   }
 }
 
@@ -43,6 +44,7 @@
     --card-tiny-text: 18px;
     --title-font-size: 36px;
     --player-artist: 20px;
+    --title-width: 260px;
   }
 }
 

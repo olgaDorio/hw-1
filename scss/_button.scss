@@ -24,6 +24,11 @@
   transition: all 0.2s;
   width: 100%;
 
+  &--default {
+    width: auto;
+    max-width: initial;
+  }
+
   &__group {
     display: flex;
   }
