@@ -8,15 +8,10 @@ const initVideo = (video, url) => {
       video.play();
     });
 
-    hls.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
-      console.log(data.levels);
-    });
-
     hls.on(Hls.Events.ERROR, function (event, data) {
       if (data.fatal) {
         switch(data.type) {
         case Hls.ErrorTypes.NETWORK_ERROR:
-        // try to recover network error
           console.log('fatal network error encountered, try to recover');
           hls.startLoad();
           break;

@@ -1,46 +1,48 @@
 <!DOCTYPE html>
-<html lang="en"></html>
-<head>
-  <meta name="robots" content="noindex"/>
-  <meta name="viewport" content="width=device-width,maximum-scale=1,initial-scale=1"/>
-  <meta charset="UTF-8"/>
-  <title>Яндекс Дом</title>
-  <link rel="stylesheet" href="css/style.css"/>
-  <link rel="stylesheet" href="css/video.css"/>
-  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-</head>
-<body>
-  <div class="page">
-    <header class="page__header"><img class="icon icon--logo" src="assets/logo.png"/><a class="link link--active" href="#">События</a><a class="link" href="#">Сводка</a><a class="link" href="#">Устройства</a><a class="link" href="#">Сценарии</a></header>
-    <main class="page__main page__player">
-      <h1 class="title">Видеонаблюдение</h1>
-      <div class="video__container">
-        <div class="video__wrapper">
-          <video class="video" autoplay="autoplay" muted="muted"></video>
+<html lang="en">
+  <head>
+    <meta name="robots" content="noindex"/>
+    <meta name="viewport" content="width=device-width,maximum-scale=1,initial-scale=1"/>
+    <meta charset="UTF-8"/>
+    <title>Яндекс Дом</title>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/video.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  </head>
+  <body>
+    <div class="page">
+      <header class="page__header"><img class="icon icon--logo" src="assets/logo.png"/><a class="link" href="/index.html">События</a><a class="link link--active" href="/player.html">Видеонаблюдение</a><a class="link" href="#">Сводка</a><a class="link" href="#">Устройства</a><a class="link" href="#">Сценарии</a></header>
+      <main class="page__main page__player">
+        <div class="video__controls">
+          <button class="button button--default">Все камеры</button>
+          <label>Яркость
+            <input id="brightness" type="range" min="0" max="300" value="100" name="brightness"/>
+          </label>
+          <label>Контрастность
+            <input id="contrast" type="range" min="0" max="300" value="100" name="contrast"/>
+          </label>
+          <canvas class="video__chart"></canvas>
         </div>
-        <div class="video__wrapper">
-          <video class="video" autoplay="autoplay" muted="muted"></video>
+        <div class="video__container">
+          <div class="video__wrapper">
+            <video class="video" autoplay="autoplay" muted="muted"></video>
+          </div>
+          <div class="video__wrapper">
+            <video class="video" autoplay="autoplay" muted="muted"></video>
+          </div>
+          <div class="video__wrapper">
+            <video class="video" autoplay="autoplay" muted="muted"></video>
+          </div>
+          <div class="video__wrapper">
+            <video class="video" autoplay="autoplay" muted="muted"></video>
+          </div>
         </div>
-        <div class="video__wrapper">
-          <video class="video" autoplay="autoplay" muted="muted"></video>
-        </div>
-        <div class="video__wrapper">
-          <video class="video" autoplay="autoplay" muted="muted"></video>
-        </div>
-      </div>
-      <div class="video__controls">
-        <button id="back">Все камеры</button>
-        <label>Яркость
-          <input id="brightness" type="range" min="100" max="300" value="100" name="brightness"/>
-        </label>
-        <label>Контрастность
-          <input id="contrast" type="range" min="100" max="300" value="100" name="contrast"/>
-        </label>
-        <canvas id="oscilloscope"></canvas>
-      </div>
-    </main>
-    <footer class="page__footer"><a class="link link--small" href="#">Помощь</a><a class="link link--small" href="#">Обратная связь</a><a class="link link--small" href="#">Разработчикам</a><a class="link link--small" href="#">Условия использования</a><a class="link link--small separate" href="https://wiki.yandex.ru/shri-2018-II/homework/Adaptivnaja-vjorstka/.files/license.pdf" target="_blank">© 2001–2017  ООО «Яндекс»</a></footer>
-  </div>
-  <script src="js/init-hls.js"></script>
-  <script src="js/player.js"></script>
-</body>
+      </main>
+      <footer class="page__footer"><a class="link link--small" href="#">Помощь</a><a class="link link--small" href="#">Обратная связь</a><a class="link link--small" href="#">Разработчикам</a><a class="link link--small" href="#">Условия использования</a><a class="link link--small separate" href="https://wiki.yandex.ru/shri-2018-II/homework/Adaptivnaja-vjorstka/.files/license.pdf" target="_blank">© 2001–2017  ООО «Яндекс»</a></footer>
+    </div>
+    <script src="js/init-hls.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/volume-analyser.js"></script>
+    <script src="js/player.js"></script>
+  </body>
+</html>
