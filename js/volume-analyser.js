@@ -35,9 +35,6 @@ class VolumeAnalyser {
       ctx.fillRect(x, height - barHeight, barWidth, barHeight);
 
       x += barWidth + 1;
-
-
-
     })
   }
 };

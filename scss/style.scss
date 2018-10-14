@@ -74,3 +74,8 @@ body {
 .separate {
   margin-left: auto !important;
 }
+
+label {
+  display: flex;
+  flex-direction: column;
+}

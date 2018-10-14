@@ -1,13 +1,4 @@
 @charset "UTF-8";
-label {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column; }
-
 .page__player {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -40,7 +31,9 @@ label {
             justify-content: space-between;
     -webkit-box-align: center;
         -ms-flex-align: center;
-            align-items: center; }
+            align-items: center;
+    width: 100%;
+    overflow: hidden; }
     @media (max-width: 910px) {
       .video__controls {
         height: 200px; } }
@@ -62,7 +55,7 @@ label {
     overflow: hidden;
     font-size: var(--title-font-size);
     opacity: 1;
-    width: 100%;
+    width: 110%;
     -ms-flex-negative: 0;
         flex-shrink: 0; }
   .video__controls--shown {
