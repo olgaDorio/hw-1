@@ -28,14 +28,14 @@ label {
     justify-content: space-between;
     align-items: center;
 
-
+    @media (max-width: 910px) {
+      height: 200px;
+    }
   }
 
   &__controls > * {
     transition: all 0.2s;
     opacity: 0;
-
-
   }
 
   &__controls > *:first-child {
@@ -62,7 +62,6 @@ label {
     padding: 20px;
 
     @media (max-width: 910px) {
-      height: initial;
       flex-wrap: wrap;
 
       > * {

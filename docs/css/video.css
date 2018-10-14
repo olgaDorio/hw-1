@@ -41,6 +41,9 @@ label {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center; }
+    @media (max-width: 910px) {
+      .video__controls {
+        height: 200px; } }
   .video__controls > * {
     -webkit-transition: all 0.2s;
     transition: all 0.2s;
@@ -66,7 +69,6 @@ label {
     padding: 20px; }
     @media (max-width: 910px) {
       .video__controls--shown {
-        height: initial;
         -ms-flex-wrap: wrap;
             flex-wrap: wrap; }
         .video__controls--shown > * {
