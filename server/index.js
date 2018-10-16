@@ -1,5 +1,6 @@
 const cors = require('cors');
 const express = require('express');
+const bodyParser = require('body-parser');
 const getEvents = require('./getEvents.js');
 const getUptime = require('./getUptime.js');
 
@@ -7,6 +8,7 @@ const app = express();
 const port = process.env.PORT || 8000;
 
 app.use(cors());
+app.use(bodyParser.json());
 
 app.get('/status', getUptime);
 app.post('/status', getUptime);

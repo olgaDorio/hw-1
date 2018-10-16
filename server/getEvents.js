@@ -11,9 +11,9 @@ const filter = (array, types) => {
   ));
 };
 
-const slice = (array, query) => {
-  const page = query.hasOwnProperty('page') ? Math.abs(query.page) : 0;
-  const amount = Math.abs(query.amount) || array.length;
+const slice = (array, params) => {
+  const page = params.hasOwnProperty('page') ? Math.abs(params.page) : 0;
+  const amount = Math.abs(params.amount) || array.length;
 
   const from = page * amount;
   const to = page * amount + amount;
@@ -28,7 +28,8 @@ const slice = (array, query) => {
 };
 
 module.exports = (request, response, next) => {
-  const types = request.query.type ? request.query.type.split(':') : '';
+  const params = { ...request.query, ...request.body };
+  const types = params.type ? params.type.split(':') : '';
 
   if (types && types.some(type => !allowedTypes.includes(type))) {
     next({
@@ -39,6 +40,6 @@ module.exports = (request, response, next) => {
   }
 
   const filtered = filter(events, types);
-  response.json(slice(filtered, request.query));
+  response.json(slice(filtered, params));
   response.end();
 };
