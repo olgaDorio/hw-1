@@ -21,11 +21,12 @@ app.get('*', (request, response, next) => {
   });
 });
 
-app.use((error, req, res) => {
+app.use((error, req, res, next) => {
   const code = error.code || 500;
   const message = error.message || 'Something broke';
   res.status(code);
   res.send(message);
+  next()
 });
 
 app.listen(port, (error) => {
