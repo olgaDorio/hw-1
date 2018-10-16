@@ -20,9 +20,8 @@ const slice = (array, params) => {
   const isAvailable = to <= array.length;
 
   return {
-    page: isAvailable ? page : Math.floor(array.length / amount),
+    page: isAvailable ? page : Math.floor((array.length - 1) / amount),
     array: isAvailable ? array.slice(from, to) : array.slice(-amount),
-    debug_amount: array.length,
     arrayLength: array.length,
   };
 };
