@@ -146,6 +146,9 @@
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
   width: 100%; }
+  .button--default {
+    width: auto;
+    max-width: initial; }
   .button__group {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -573,6 +576,7 @@
 :root {
   --red: #DB5341;
   --coal: #333333;
+  --blue: #068FFF;
   --black: #000000;
   --white: #ffffff;
   --yellow: #FFD93E;
@@ -590,7 +594,8 @@
     --card-small-text: calc(0.75rem + ((1vw - 3.75px) * 0.3883));
     --card-tiny-text: calc(0.875rem + ((1vw - 3.75px) * 0.2589));
     --title-font-size: calc(1.5rem + ((1vw - 3.75px) * 0.7767));
-    --player-artist: calc(1.125rem + ((1vw - 3.75px) * 0.201)); } }
+    --player-artist: calc(1.125rem + ((1vw - 3.75px) * 0.201));
+    --title-width: calc(8.625rem + ((1vw - 3.75px) * 12.2613)); } }
 
 @media (min-width: 1370px) {
   :root {
@@ -601,7 +606,8 @@
     --card-small-text: 18px;
     --card-tiny-text: 18px;
     --title-font-size: 36px;
-    --player-artist: 20px; } }
+    --player-artist: 20px;
+    --title-width: 260px; } }
 
 body {
   font-family: Arial, sans-serif;
@@ -624,3 +630,12 @@ body {
 
 .separate {
   margin-left: auto !important; }
+
+label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column; }
