@@ -38,6 +38,10 @@
     opacity: 0;
   }
 
+  &__controls > label {
+    padding: 10px;
+  }
+
   &__controls > *:first-child {
     margin-right: auto;
   }

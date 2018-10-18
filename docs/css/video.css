@@ -122,6 +122,8 @@
     -webkit-transition: all 0.2s;
     transition: all 0.2s;
     opacity: 0; }
+  .video__controls > label {
+    padding: 10px; }
   .video__controls > *:first-child {
     margin-right: auto; }
   .video__controls > *:last-child {
