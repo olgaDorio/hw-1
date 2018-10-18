@@ -22,23 +22,29 @@ html(lang="en")
       main.page__main.page__player
         .video__controls
           button.button.button--default Все камеры
+
           label
             | Яркость
-            input#brightness(type="range", min="0", max="300", value="100", name="brightness")
+            .slider(data-min="0", data-max="300", data-value="100", data-name="brightness")
+              button.circle
+
           label
             | Контрастность
-            input#contrast(type="range", min="0", max="300", value="100", name="contrast")
-          canvas.video__chart
+            .slider.slider--contrast(data-min="0", data-max="300", data-value="100", data-name="contrast")
+              button.circle
+
+          .video__chart.chart
+            .chart__bar
 
         .video__container
           .video__wrapper
-            video.video(autoplay, muted)
+            video.video(autoplay, muted, loop)
           .video__wrapper
-            video.video(autoplay, muted)
+            video.video(autoplay, muted, loop)
           .video__wrapper
-            video.video(autoplay, muted)
+            video.video(autoplay, muted, loop)
           .video__wrapper
-            video.video(autoplay, muted)
+            video.video(autoplay, muted, loop)
 
       footer.page__footer
         a.link.link--small(href="#") Помощь
@@ -47,6 +53,7 @@ html(lang="en")
         a.link.link--small(href="#") Условия использования
         a.link.link--small(href="https://wiki.yandex.ru/shri-2018-II/homework/Adaptivnaja-vjorstka/.files/license.pdf", target="_blank").separate © 2001–2017  ООО «Яндекс»
 
+    script(src="/js/slider.js")
     script(src="js/init-hls.js")
     script(src="js/utils.js")
     script(src="js/volume-analyser.js")
