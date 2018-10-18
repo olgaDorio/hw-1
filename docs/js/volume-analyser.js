@@ -2,6 +2,7 @@ class VolumeAnalyser {
   constructor(element, fftSize) {
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     this.analyser = audioCtx.createAnalyser();
+    this.bar = document.querySelector('.chart__bar');
 
     const source = audioCtx.createMediaElementSource(element);
     source.connect(this.analyser);
@@ -17,24 +18,10 @@ class VolumeAnalyser {
     return dataArray;
   }
 
-  draw({dataArray, canvas, chartColors}) {
-    const { width, height } = canvas;
-    const barWidth = width / this.bufferLength;
-    const ctx = canvas.getContext('2d');
+  draw({dataArray}) {
+    const average = dataArray
+      .reduce((prev, curr) => prev + curr, 0 ) / dataArray.length;
 
-    let x = 0;
-
-    ctx.fillStyle = chartColors.background;
-    ctx.fillRect(0, 0, width, height);
-
-    dataArray.forEach((value) => {
-      const barHeight = value / 2 || 1;
-      const y = height - barHeight;
-
-      ctx.fillStyle = value ? chartColors.fill : chartColors.empty;
-      ctx.fillRect(x, height - barHeight, barWidth, barHeight);
-
-      x += barWidth + 1;
-    })
+    this.bar.style.animationDelay = `-${average}ms`;
   }
 };

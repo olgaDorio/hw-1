@@ -16,30 +16,37 @@
         <div class="video__controls">
           <button class="button button--default">Все камеры</button>
           <label>Яркость
-            <input id="brightness" type="range" min="0" max="300" value="100" name="brightness"/>
+            <div class="slider" data-min="0" data-max="300" data-value="100" data-name="brightness">
+              <button class="circle"></button>
+            </div>
           </label>
           <label>Контрастность
-            <input id="contrast" type="range" min="0" max="300" value="100" name="contrast"/>
+            <div class="slider slider--contrast" data-min="0" data-max="300" data-value="100" data-name="contrast">
+              <button class="circle"></button>
+            </div>
           </label>
-          <canvas class="video__chart"></canvas>
+          <div class="video__chart chart">
+            <div class="chart__bar"></div>
+          </div>
         </div>
         <div class="video__container">
           <div class="video__wrapper">
-            <video class="video" autoplay="autoplay" muted="muted"></video>
+            <video class="video" autoplay="autoplay" muted="muted" loop="loop"></video>
           </div>
           <div class="video__wrapper">
-            <video class="video" autoplay="autoplay" muted="muted"></video>
+            <video class="video" autoplay="autoplay" muted="muted" loop="loop"></video>
           </div>
           <div class="video__wrapper">
-            <video class="video" autoplay="autoplay" muted="muted"></video>
+            <video class="video" autoplay="autoplay" muted="muted" loop="loop"></video>
           </div>
           <div class="video__wrapper">
-            <video class="video" autoplay="autoplay" muted="muted"></video>
+            <video class="video" autoplay="autoplay" muted="muted" loop="loop"></video>
           </div>
         </div>
       </main>
       <footer class="page__footer"><a class="link link--small" href="#">Помощь</a><a class="link link--small" href="#">Обратная связь</a><a class="link link--small" href="#">Разработчикам</a><a class="link link--small" href="#">Условия использования</a><a class="link link--small separate" href="https://wiki.yandex.ru/shri-2018-II/homework/Adaptivnaja-vjorstka/.files/license.pdf" target="_blank">© 2001–2017  ООО «Яндекс»</a></footer>
     </div>
+    <script src="/js/slider.js"></script>
     <script src="js/init-hls.js"></script>
     <script src="js/utils.js"></script>
     <script src="js/volume-analyser.js"></script>
