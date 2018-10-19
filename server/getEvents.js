@@ -12,7 +12,7 @@ const filter = (array, types) => {
 };
 
 const slice = (array, params) => {
-  const page = params.hasOwnProperty('page') ? Math.abs(params.page) : 0;
+  const page = params.page ? Math.abs(params.page) : 0;
   const amount = Math.abs(params.amount) || array.length;
 
   const from = page * amount;

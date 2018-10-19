@@ -1,5 +1,6 @@
 const formatTime = (date) => {
-  const hh = `0${date.getUTCHours()}`.slice(-2);
+  const hours = Math.floor(date.getTime() / (1000 * 60 * 60));
+  const hh = `0${hours}`.length < 3 ? `0${hours}`.slice(-2) : hours;
   const mm = `0${date.getUTCMinutes()}`.slice(-2);
   const ss = `0${date.getUTCSeconds()}`.slice(-2);
   return `${hh}:${mm}:${ss}`;
