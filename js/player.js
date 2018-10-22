@@ -9,10 +9,10 @@ const videoContainer = document.querySelector('.video__container');
 const fftSize = 256;
 
 const links = [
-  '../assets/streams/cat/master.m3u8',
-  '../assets/streams/dog/master.m3u8',
-  '../assets/streams/hall/master.m3u8',
-  '../assets/streams/sosed/master.m3u8',
+  'assets/streams/cat/master.m3u8',
+  'assets/streams/dog/master.m3u8',
+  'assets/streams/hall/master.m3u8',
+  'assets/streams/sosed/master.m3u8',
 ];
 
 const filters = Array.from({length: 4}, () => ({
