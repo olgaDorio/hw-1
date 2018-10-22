@@ -345,8 +345,6 @@
   -webkit-appearance: none;
   margin: 8px 0;
   width: 100%; }
-  .range:focus {
-    outline: none !important; }
   .range::-moz-focus-outer {
     border: 0; }
   .range::-webkit-slider-runnable-track {
@@ -392,6 +390,8 @@
     cursor: pointer;
     height: 20px;
     width: 12px; }
+  .range:focus {
+    outline: none !important; }
 
 .range--round::-webkit-slider-runnable-track {
   background: #d8d8d8;

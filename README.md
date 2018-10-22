@@ -1,10 +1,23 @@
-# Адаптивная верстка
+# Как запустить
 
-change `events.js`
-run `npm run dev` or `npm run build`
+```sh
+npm install
+```
 
-# Node.js
-`npm run dev-node`
-`npm run eslint-node`
+## Сборка фронта (в директорию `/docs`)
+```sh
+npm run f-dev
+npm run f-build
+```
 
-`npm run build-node`
+## Запуск сервер на порту, указанном в `process.env.PORT` (или 8000)
+```sh
+npm run n-dev
+npm run n-build
+```
+
+## Запуск линтеров
+
+```sh
+npm run lint
+```

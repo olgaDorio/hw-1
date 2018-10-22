@@ -28,7 +28,7 @@ app.use((error, req, res, next) => {
   const message = error.message || 'Something broke';
   res.status(code);
   res.send(message);
-  next()
+  next();
 });
 
 app.listen(port, (error) => {

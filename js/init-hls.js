@@ -4,31 +4,31 @@ const initVideo = (video, url) => {
     hls.loadSource(url);
     hls.attachMedia(video);
 
-    hls.on(Hls.Events.MEDIA_ATTACHED, function() {
+    hls.on(Hls.Events.MEDIA_ATTACHED, () => {
       video.play();
     });
 
-    hls.on(Hls.Events.ERROR, function (event, data) {
+    hls.on(Hls.Events.ERROR, (event, data) => {
       if (data.fatal) {
-        switch(data.type) {
-        case Hls.ErrorTypes.NETWORK_ERROR:
-          console.log('fatal network error encountered, try to recover');
-          hls.startLoad();
-          break;
-        case Hls.ErrorTypes.MEDIA_ERROR:
-          console.log('fatal media error encountered, try to recover');
-          hls.recoverMediaError();
-          break;
-        default:
-          hls.destroy();
-          break;
+        switch (data.type) {
+          case Hls.ErrorTypes.NETWORK_ERROR:
+            console.log('fatal network error encountered, try to recover');
+            hls.startLoad();
+            break;
+          case Hls.ErrorTypes.MEDIA_ERROR:
+            console.log('fatal media error encountered, try to recover');
+            hls.recoverMediaError();
+            break;
+          default:
+            hls.destroy();
+            break;
         }
       }
     });
   } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
     video.src = url;
-    video.addEventListener('loadedmetadata', function() {
+    video.addEventListener('loadedmetadata', () => {
       video.play();
     });
   }
-}
+};

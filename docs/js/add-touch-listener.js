@@ -6,7 +6,6 @@ const addTouchListener = ({
 }) => {
   const touches = {};
 
-  const minLeft = 0;
   const minBrightness = 0.3;
   const maxBrightness = 1;
   const brightnessStep = 0.05;
@@ -17,10 +16,6 @@ const addTouchListener = ({
 
   let prevYDiff = null;
 
-  const angleDeg = ([p1, p2]) => (
-    Math.atan2(p2.pageY - p1.pageY, p2.pageX - p1.pageX) * 180 / Math.PI
-  );
-
   const getSliderPosition = () => {
     const maxSliderPosition = targetNode.offsetWidth - sliderX.offsetWidth;
     const maxLeftPosition = imageNode.offsetWidth - targetNode.offsetWidth;
@@ -28,13 +23,31 @@ const addTouchListener = ({
     return maxSliderPosition * percentage;
   };
 
-  const changeBrightness = (e) => {
+  const setLeft = (value) => {
+    currentLeft = value;
+    imageNode.style.left = `${currentLeft}px`;
+    sliderX.style.left = `${getSliderPosition()}px`;
+  };
+
+  const setBrightness = (value) => {
+    brightness = value;
+    imageNode.style.filter = `brightness(${brightness})`;
+    brightnessInfo.innerHTML = `${Math.round(brightness * 100)}%`;
+  };
+
+  const changeBrightness = () => {
     const clientYs = Object.values(touches).map(({ clientY }) => clientY);
     const currDiff = Math.abs(clientYs[0] - clientYs[1]);
 
-    const newValue = !prevYDiff ? brightness : currDiff > prevYDiff
-      ? Math.min(brightness + brightnessStep, maxBrightness)
-      : Math.max(brightness - brightnessStep, minBrightness);
+    let newValue;
+
+    if (!prevYDiff) {
+      newValue = brightness;
+    } else if (currDiff > prevYDiff) {
+      newValue = Math.min(brightness + brightnessStep, maxBrightness);
+    } else {
+      newValue = Math.max(brightness - brightnessStep, minBrightness);
+    }
 
     setBrightness(newValue);
     prevYDiff = currDiff;
@@ -61,19 +74,6 @@ const addTouchListener = ({
     requestAnimationFrame(scrollBack);
   };
 
-  const setLeft = (value) => {
-    currentLeft = value;
-    imageNode.style.left = `${currentLeft}px`;
-    sliderX.style.left = `${getSliderPosition()}px`;
-  };
-
-  const setBrightness = (value) => {
-    brightness = value;
-    imageNode.style.filter = `brightness(${brightness})`;
-    brightnessInfo.innerHTML = `${Math.round(brightness * 100)}%`;
-  };
-
-  const calcDistance = (A, B) => Math.sqrt((B.pageX - A.pageX) * (B.pageX - A.pageX) + (B.pageY - A.pageY) * (B.pageY - A.pageY)) * -1;
 
   const onpointerdown = (e) => {
     touches[e.pointerId] = e;
@@ -91,7 +91,7 @@ const addTouchListener = ({
     }
   };
 
-  const onpointerup = ({ pointerId }) => {
+  const onpointerup = () => {
     if (currentLeft > 0) {
       scrollForward();
     } else if (Math.abs(currentLeft) > imageNode.offsetWidth - targetNode.offsetWidth) {

@@ -15,14 +15,12 @@ const links = [
   'assets/streams/sosed/master.m3u8',
 ];
 
-const filters = Array.from({length: 4}, () => ({
+const filters = Array.from({ length: 4 }, () => ({
   brightness: 100,
   contrast: 100,
 }));
 
-const getOpenVideo = (getIndex) => {
-  return wrappers[getIndex ? 'findIndex' : 'find'](node => node.classList.contains('video--open'));
-};
+const getOpenVideo = getIndex => wrappers[getIndex ? 'findIndex' : 'find'](node => node.classList.contains('video--open'));
 
 const updateStyle = (index) => {
   const { brightness, contrast } = filters[index];
@@ -32,7 +30,7 @@ const updateStyle = (index) => {
 const updateInputValue = (index) => {
   sliders.forEach((slider) => {
     slider.setValue(filters[index][slider.name], true);
-  })
+  });
 };
 
 const toggleView = (element, index = 0) => {
@@ -70,7 +68,7 @@ goBack.addEventListener('click', () => {
   toggleView(getOpenVideo());
 });
 
-videos.forEach((video, index) => {
+videos.forEach((video) => {
   video.addEventListener('loadeddata', () => {
     const volumeAnalyser = new VolumeAnalyser(video, fftSize);
 
@@ -87,7 +85,7 @@ videos.forEach((video, index) => {
     };
 
     repaint();
-  })
+  });
 
   video.addEventListener('click', play);
 });
@@ -97,5 +95,5 @@ sliders.forEach((slider) => {
     const index = getOpenVideo(true);
     filters[index][slider.name] = value;
     updateStyle(index);
-  }
+  };
 });

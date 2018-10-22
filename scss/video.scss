@@ -42,6 +42,10 @@
     padding: 10px;
   }
 
+  &__controls--shown > * {
+    opacity: 1;
+  }
+
   &__controls > *:first-child {
     margin-right: auto;
   }
@@ -73,10 +77,6 @@
         margin-right: auto;
       }
     }
-  }
-
-  &__controls--shown > * {
-    opacity: 1;
   }
 
   &__controls--shown::before {

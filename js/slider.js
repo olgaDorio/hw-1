@@ -1,7 +1,4 @@
-const circle = document.querySelector('.circle');
-const slider = document.querySelector('.slider');
-
-function Slider ({slider, onChange}) {
+function Slider({ slider, onChange }) {
   this.slider = slider;
   this.circle = slider.querySelector('.circle');
   this.radius = this.circle.offsetWidth / 2;
@@ -23,23 +20,27 @@ function Slider ({slider, onChange}) {
 
   this.min = 0;
 
-  const getLeftPosition = ({event, diff, sliderLeft, min, max}) => {
+  const getLeftPosition = ({
+    event, diff, sliderLeft, min, max,
+  }) => {
     const pageX = event.x || event.changedTouches[0].clientX;
     const relativeX = pageX - sliderLeft - diff;
     return Math.min(Math.max(relativeX, min), max);
   };
 
-  const getStyle = ({value, sliderWidth, radius, max}) => {
+  const getStyle = ({
+    value, sliderWidth, radius, max,
+  }) => {
     if (value > 1 || value < 0) {
       console.error('currentValue should correspond to the interval [0; 1]');
-      return;
+      return false;
     }
 
     const left = 100 * value * max / sliderWidth;
     const radiusP = 100 * radius / sliderWidth;
     const bgPosition = 100 - left - radiusP;
 
-    return { left: `${left}%`, backgroundPosition: `${bgPosition}%`};
+    return { left: `${left}%`, backgroundPosition: `${bgPosition}%` };
   };
 
   const start = (e) => {
@@ -55,8 +56,8 @@ function Slider ({slider, onChange}) {
       diff: this.diff,
       sliderLeft: this.slider.offsetLeft,
       min: this.min,
-      max: this.max()},
-    ) / this.max();
+      max: this.max(),
+    }) / this.max();
     this.setValue(value);
 
     if (this.onChange) {
@@ -65,7 +66,7 @@ function Slider ({slider, onChange}) {
   };
 
   const stop = (e) => {
-    if (e.target !== this.slider && e.target !== circle) {
+    if (e.target !== this.slider && e.target !== this.circle) {
       this.down = false;
       return;
     }
@@ -105,8 +106,8 @@ function Slider ({slider, onChange}) {
 
   this.setValue(slider.dataset.initialValue, true);
 
-  window.addEventListener('resize', (e) => {
+  window.addEventListener('resize', () => {
     const { value } = this.slider.dataset;
     this.setValue(value || 0);
   });
-};
+}

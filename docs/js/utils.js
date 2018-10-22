@@ -5,7 +5,7 @@ const getLightness = (imageData) => {
   let light = 0;
   let dark = 0;
 
-  const rgba = Array.from({length: data.length / 4}, (v, i) => (
+  const rgba = Array.from({ length: data.length / 4 }, (v, i) => (
     data.slice(i * 4, i * 4 + 4)
   ));
 
@@ -17,10 +17,10 @@ const getLightness = (imageData) => {
     } else {
       light += 1;
     }
-  })
+  });
 
   return Math.round((light * 100) / (light + dark));
-}
+};
 
 const getImageData = (video, fraction = 1) => {
   const canvas_t = document.createElement('canvas');

@@ -4,13 +4,14 @@
   "description": "",
   "main": "server/index.js",
   "scripts": {
-    "dev": "./node_modules/.bin/gulp watch",
-    "build": "./node_modules/.bin/gulp",
-    "lint": "node_modules/.bin/stylelint scss/* --config .stylelintrc",
-    "eslint": "node_modules/.bin/eslint js/*.js --fix --env browser",
-    "eslint-node": "node_modules/.bin/eslint server/*.js --fix",
-    "dev-node": "./node_modules/.bin/nodemon server/index.js",
-    "build-node": "node server/index.js"
+    "f-dev": "./node_modules/.bin/gulp watch",
+    "f-build": "./node_modules/.bin/gulp",
+    "n-dev": "./node_modules/.bin/nodemon server/index.js",
+    "n-build": "node server/index.js",
+    "n-eslint": "node_modules/.bin/eslint server/*.js --fix",
+    "f-eslint": "node_modules/.bin/eslint js/*.js --fix --env browser",
+    "f-stylelint": "node_modules/.bin/stylelint scss/* --config .stylelintrc --fix",
+    "lint": "npm run n-eslint && npm run f-eslint && npm run f-stylelint"
   },
   "repository": {
     "type": "git",
@@ -30,7 +31,8 @@
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^6.0.0",
     "gulp-pug": "^4.0.1",
-    "gulp-sass": "^4.0.1"
+    "gulp-sass": "^4.0.1",
+    "stylelint-scss": "^3.3.1"
   },
   "devDependencies": {
     "eslint": "^5.7.0",

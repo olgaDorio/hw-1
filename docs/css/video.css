@@ -124,6 +124,8 @@
     opacity: 0; }
   .video__controls > label {
     padding: 10px; }
+  .video__controls--shown > * {
+    opacity: 1; }
   .video__controls > *:first-child {
     margin-right: auto; }
   .video__controls > *:last-child {
@@ -150,8 +152,6 @@
         .video__controls--shown > * {
           margin-left: auto;
           margin-right: auto; } }
-  .video__controls--shown > * {
-    opacity: 1; }
   .video__controls--shown::before {
     opacity: 0;
     width: 0;
