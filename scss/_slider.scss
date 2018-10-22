@@ -1,0 +1,32 @@
+$from: white;
+$to: #1b1b1b;
+$radius: 8px;
+$width: 125px;
+
+.slider {
+  background-image: linear-gradient(90deg, #FFE682 2%, #FF9E00 98%);
+  background-position: 100%;
+  background-size: 200%;
+  border-radius: 30px;
+  flex-shrink: 0;
+  height: 2 * $radius;
+  position: relative;
+  width: $width;
+}
+
+.slider--contrast {
+  background-image: linear-gradient(90deg, #068FFF 2%, #FFD800 51%, #F76B1C 100%);
+}
+
+.circle {
+  background: transparent;
+  border-radius: 50%;
+  border: none;
+  bottom: 0;
+  box-shadow: inset 0 0 2px 2px white;
+  left: 0;
+  outline: none;
+  position: absolute;
+  top: 0;
+  width: 2 * $radius;
+}
