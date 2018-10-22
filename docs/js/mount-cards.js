@@ -15,9 +15,7 @@ const createButtons = ([first, second]) => {
 
 const createGraph = () => {
   const node = graphTemplate.cloneNode(true).querySelector('img');
-  node.srcset = 'assets/chart.png 590w, assets/chart2.png 1180w, assets/chart3.png 1770w';
-  node.sizes = '(max-width: 900px) 90vw, 30vw';
-  node.src = 'assets/chart3.png';
+  node.src = 'assets/Richdata.svg';
   return node;
 };
 
@@ -25,9 +23,9 @@ const createImages = () => {
   const node = imageTemplate.cloneNode(true);
 
   node.querySelectorAll('img').forEach((img) => {
-    img.srcset = 'assets/bitmap.png 820w, assets/bitmap2.png 1664w, assets/bitmap3.png 2496w';
+    img.srcset = 'assets/bitmap.jpg 820w, assets/bitmap2.jpg 1664w, assets/bitmap3.jpg 2496w';
     img.sizes = '(max-width: 900px) 90vw, 30vw';
-    img.src = 'assets/bitmap3.png';
+    img.src = 'assets/bitmap3.jpg';
   });
 
   return node;
@@ -64,6 +62,7 @@ const createCard = (event) => {
   }
 
   card.querySelector('img').src = `assets/${icon}.svg`;
+  card.querySelector('span').title = title;
   card.querySelector('span').innerHTML = title;
   card.querySelector('.card__subtitle').children[0].innerHTML = source;
   card.querySelector('.card__subtitle').children[1].innerHTML = time;
