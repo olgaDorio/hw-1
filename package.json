@@ -2,11 +2,15 @@
   "name": "hw-1",
   "version": "1.0.0",
   "description": "",
-  "main": "script.js",
+  "main": "server/index.js",
   "scripts": {
     "dev": "./node_modules/.bin/gulp watch",
     "build": "./node_modules/.bin/gulp",
-    "lint": "node_modules/.bin/stylelint scss/* --config .stylelintrc"
+    "lint": "node_modules/.bin/stylelint scss/* --config .stylelintrc",
+    "eslint": "node_modules/.bin/eslint js/*.js --fix --env browser",
+    "eslint-node": "node_modules/.bin/eslint server/*.js --fix",
+    "dev-node": "./node_modules/.bin/nodemon server/index.js",
+    "build-node": "node server/index.js"
   },
   "repository": {
     "type": "git",
@@ -19,13 +23,22 @@
   },
   "homepage": "https://github.com/olgaDorio/hw-1#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
     "del": "^3.0.0",
+    "express": "^4.16.4",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^6.0.0",
     "gulp-pug": "^4.0.1",
     "gulp-sass": "^4.0.1"
   },
   "devDependencies": {
+    "eslint": "^5.7.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1",
+    "nodemon": "^1.18.4",
     "stylelint": "^9.6.0",
     "stylelint-config-recommended": "^2.1.0"
   }

@@ -19,83 +19,6 @@ body
     main.page__main
       h1.title Лента событий
 
-      each event in JSON.parse(events)
-        .card(class="card--" + event.size + " card--" + event.type + (!event.description && !event.data ? ' card--small' : ' card'))
-          button.button.card__control
-          button.button.card__control
-          .card__header
-            .card__title
-              img.icon(src="assets/" + event.icon + '.svg')
-              span= event.title
-            .card__subtitle
-              div= event.source
-              div= event.time
-          if event.description || event.data
-            .card__body
-              .card__description= event.description
-
-              - var { buttons, type, image, albumcover, artist, track, volume } = event.data || {}
-              - var { temperature, humidity } = event.data || {}
-              - var allowedKeys = ['temperature', 'humidity']
-
-              if buttons
-                .button__group
-                  button.button.button--active #{buttons[0]}
-                  button.button #{buttons[1]}
-
-              else if type === "graph"
-                img.card__image(
-                  srcset="assets/chart.png 590w, assets/chart2.png 1180w, assets/chart3.png 1770w",
-                  sizes="(max-width: 900px) 90vw, 30vw",
-                  src="assets/chart3.png")
-
-              else if image
-                img.card__image.show-on-desktop(
-                  srcset="assets/bitmap.png 820w, assets/bitmap2.png 1664w, assets/bitmap3.png 2496w",
-                  sizes="(max-width: 900px) 90vw, 30vw",
-                  src="assets/bitmap3.png")
-                .image-m__container.show-on-touch
-                  img.card__image.image-m(
-                    draggable="false",
-                    ondragstart="return false;",
-                    srcset="assets/bitmap.png 820w, assets/bitmap2.png 1664w, assets/bitmap3.png 2496w",
-                    sizes="(max-width: 900px) 90vw, 30vw",
-                    src="assets/bitmap3.png")
-                  .image-m__track
-                .image-m__parameter.indicator__group.show-on-touch
-                  .indicator
-                    | Приближение:&nbsp;
-                    .zoom 100%
-                  .indicator.indicator--separate
-                    | Яркость:&nbsp;
-                    .brightness 100%
-
-              else if event.data && Object.keys(event.data).every(k => allowedKeys.includes(k))
-                .indicator__group
-                  .indicator
-                    | Температура:&nbsp;
-                    .indicator__value #{temperature} C
-
-                  .indicator
-                    | Влажность:&nbsp;
-                    .indicator__value #{humidity}%
-              else if albumcover
-                .player
-                  .player__row
-                    img.player__albumcover(src=albumcover)
-                    .player__column
-                      .player__artist #{artist}
-                      input.range(type="range")
-                    .player__duration #{track.length}
-                  .player__row
-                    button.button.player__control
-                      img(src="assets/prev.svg")
-                    button.button.player__control
-                      img(src="assets/prev.svg", style="transform: rotate(-180deg)")
-                    .player__column
-                      input.range.range--round(type="range", min="0", max="100", value=volume)
-                    .player__volume #{volume}%
-
     footer.page__footer
       a.link.link--small(href="#") Помощь
       a.link.link--small(href="#") Обратная связь
@@ -103,5 +26,70 @@ body
       a.link.link--small(href="#") Условия использования
       a.link.link--small(href="https://wiki.yandex.ru/shri-2018-II/homework/Adaptivnaja-vjorstka/.files/license.pdf", target="_blank").separate © 2001–2017  ООО «Яндекс»
 
+    template#card
+      .card
+        button.button.card__control
+        button.button.card__control
+        .card__header
+          .card__title
+            img.icon
+            span
+          .card__subtitle
+            div
+            div
+
+    template#body
+      .card__body
+        .card__description
+
+    template#buttons
+      .button__group
+        button.button.button--active
+        button.button
+
+    template#graph
+      img.card__image
+
+    template#image
+      img.card__image.show-on-desktop
+      .image-m__container.show-on-touch
+        img.card__image.image-m(draggable="false", ondragstart="return false;")
+        .image-m__track
+      .image-m__parameter.indicator__group.show-on-touch
+        .indicator
+          | Приближение:&nbsp;
+          .zoom 100%
+        .indicator.indicator--separate
+          | Яркость:&nbsp;
+          .brightness 100%
+
+    template#indicator
+      .indicator__group
+        .indicator
+          | Температура:&nbsp;
+          .indicator__value
+
+        .indicator
+          | Влажность:&nbsp;
+          .indicator__value
+
+    template#player
+      .player
+        .player__row
+          img.player__albumcover
+          .player__column
+            .player__artist
+            input.range(type="range")
+          .player__duration
+        .player__row
+          button.button.player__control
+            img(src="assets/prev.svg")
+          button.button.player__control
+            img(src="assets/prev.svg", style="transform: rotate(-180deg)")
+          .player__column
+            input.range.range--round(type="range", min="0", max="100")
+          .player__volume
+
+  script(src="js/mountCards.js")
   script(src="js/script.js")
 
