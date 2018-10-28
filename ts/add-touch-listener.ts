@@ -1,10 +1,21 @@
-const addTouchListener = ({
+interface Arguments {
+  targetNode: HTMLElement;
+  imageNode: HTMLElement;
+  sliderX: HTMLElement;
+  brightnessInfo: HTMLElement;
+}
+
+interface Touches {
+  [key: string]: PointerEvent;
+}
+
+export default ({
   targetNode,
   imageNode,
   sliderX,
   brightnessInfo,
-}) => {
-  const touches = {};
+}: Arguments) => {
+  const touches: Touches = {};
 
   const minBrightness = 0.3;
   const maxBrightness = 1;
@@ -14,7 +25,7 @@ const addTouchListener = ({
   let currentLeft = 0;
   let brightness = 1;
 
-  let prevYDiff = null;
+  let prevYDiff = 0;
 
   const getSliderPosition = () => {
     const maxSliderPosition = targetNode.offsetWidth - sliderX.offsetWidth;
@@ -23,20 +34,20 @@ const addTouchListener = ({
     return maxSliderPosition * percentage;
   };
 
-  const setLeft = (value) => {
+  const setLeft = (value: number) => {
     currentLeft = value;
     imageNode.style.left = `${currentLeft}px`;
     sliderX.style.left = `${getSliderPosition()}px`;
   };
 
-  const setBrightness = (value) => {
+  const setBrightness = (value: number) => {
     brightness = value;
     imageNode.style.filter = `brightness(${brightness})`;
     brightnessInfo.innerHTML = `${Math.round(brightness * 100)}%`;
   };
 
   const changeBrightness = () => {
-    const clientYs = Object.values(touches).map(({ clientY }) => clientY);
+    const clientYs = Object.values(touches).map(({ clientY }: { clientY: number }) => clientY);
     const currDiff = Math.abs(clientYs[0] - clientYs[1]);
 
     let newValue;
@@ -53,7 +64,7 @@ const addTouchListener = ({
     prevYDiff = currDiff;
   };
 
-  const changeLeftPosition = (e) => {
+  const changeLeftPosition = (e: PointerEvent) => {
     const touch = touches[e.pointerId];
     setLeft(currentLeft + e.pageX - touch.pageX);
     touches[e.pointerId] = e;
@@ -74,13 +85,12 @@ const addTouchListener = ({
     requestAnimationFrame(scrollBack);
   };
 
-
-  const onpointerdown = (e) => {
+  const onpointerdown = (e: PointerEvent) => {
     touches[e.pointerId] = e;
     targetNode.setPointerCapture(e.pointerId);
   };
 
-  const onpointermove = (e) => {
+  const onpointermove = (e: PointerEvent) => {
     const amount = Object.keys(touches).length;
 
     if (amount === 1) {

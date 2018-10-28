@@ -1,9 +1,13 @@
-const videos = [...document.querySelectorAll('.video')];
-const wrappers = [...document.querySelectorAll('.video__wrapper')];
-const sliders = [...document.querySelectorAll('.slider')].map(slider => new Slider({ slider }));
+import Slider from './slider';
+import initVideo from './init-hls';
+import VolumeAnalyser from './volume-analyser';
+
+const videos = [...document.querySelectorAll<HTMLVideoElement>('.video')];
+const wrappers = [...document.querySelectorAll<HTMLElement>('.video__wrapper')];
+const sliders = [...document.querySelectorAll<HTMLElement>('.slider')].map(s => new Slider(s));
 
 const controls = document.querySelector('.video__controls');
-const goBack = controls.querySelector('.button');
+const goBack = controls && controls.querySelector('.button'); // ?
 const videoContainer = document.querySelector('.video__container');
 
 const fftSize = 256;
@@ -15,32 +19,36 @@ const links = [
   'assets/streams/sosed/master.m3u8',
 ];
 
-const filters = Array.from({ length: 4 }, () => ({
+const filters:{ [index:string] : number }[] = Array.from({ length: 4 }, () => ({
   brightness: 100,
   contrast: 100,
 }));
 
-const getOpenVideo = getIndex => wrappers[getIndex ? 'findIndex' : 'find'](node => node.classList.contains('video--open'));
+const getOpenVideo = (getIndex?: Boolean) => (
+  wrappers[getIndex ? 'findIndex' : 'find'](node => node.classList.contains('video--open'))
+ );
 
-const updateStyle = (index) => {
+const updateStyle = (index: number) => {
   const { brightness, contrast } = filters[index];
   videos[index].style.filter = `contrast(${contrast}%) brightness(${brightness}%)`;
 };
 
-const updateInputValue = (index) => {
+const updateInputValue = (index: number) => {
   sliders.forEach((slider) => {
     slider.setValue(filters[index][slider.name], true);
   });
 };
 
-const toggleView = (element, index = 0) => {
+const toggleView = (element: HTMLElement, index = 0) => {
+  const video = element.querySelector('video');
+
   element.classList.toggle('video--open');
-  controls.classList.toggle('video__controls--shown');
-  element.querySelector('video').muted = !element.querySelector('video').muted;
+  controls && controls.classList.toggle('video__controls--shown');
+  if (video) video.muted = !video.muted;
   updateInputValue(index);
 };
 
-const play = (e) => {
+const play = (e: Event) => {
   if (videos.every(v => !v.paused)) {
     return;
   }
@@ -53,19 +61,21 @@ links.forEach((link, index) => {
   initVideo(videos[index], link);
 });
 
-videoContainer.addEventListener('click', (e) => {
-  const target = e.target.closest('.video__wrapper');
+videoContainer && videoContainer.addEventListener('click', (e) => {
+  const target = (<HTMLElement>e.target).closest('.video__wrapper') as HTMLElement;
 
   if (!target || target.classList.contains('video--open')) {
     return;
   }
 
+  if (!target.parentNode) return;
   const index = [...target.parentNode.children].findIndex(child => child === target);
   toggleView(target, index);
 });
 
-goBack.addEventListener('click', () => {
-  toggleView(getOpenVideo());
+goBack && goBack.addEventListener('click', () => {
+  const openedVideo = getOpenVideo() as HTMLElement;
+  if (openedVideo) toggleView(openedVideo);
 });
 
 videos.forEach((video) => {
@@ -75,7 +85,7 @@ videos.forEach((video) => {
     const repaint = () => {
       requestAnimationFrame(repaint);
 
-      if (!video.parentNode.classList.contains('video--open')) {
+      if (!video.parentNode || !(<HTMLElement>video.parentNode).classList.contains('video--open')) {
         return;
       }
 
@@ -91,8 +101,8 @@ videos.forEach((video) => {
 });
 
 sliders.forEach((slider) => {
-  slider.onChange = (value) => {
-    const index = getOpenVideo(true);
+  slider.onChange = (value: number) => {
+    const index = getOpenVideo(true) as number;
     filters[index][slider.name] = value;
     updateStyle(index);
   };

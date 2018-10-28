@@ -6,14 +6,13 @@ npm install
 
 ## Сборка фронта (в директорию `/docs`)
 ```sh
-npm run f-dev
-npm run f-build
+npm run dev
+npm run build
 ```
 
-## Запуск сервер на порту, указанном в `process.env.PORT` (или 8000)
+## Запуск сервера на порту, указанном в `process.env.PORT` (или 8000)
 ```sh
-npm run n-dev
-npm run n-build
+npm run server
 ```
 
 ## Запуск линтеров

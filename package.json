@@ -4,14 +4,12 @@
   "description": "",
   "main": "server/index.js",
   "scripts": {
-    "f-dev": "./node_modules/.bin/gulp watch",
-    "f-build": "./node_modules/.bin/gulp",
-    "n-dev": "./node_modules/.bin/nodemon server/index.js",
-    "n-build": "node server/index.js",
-    "n-eslint": "node_modules/.bin/eslint server/*.js --fix",
-    "f-eslint": "node_modules/.bin/eslint js/*.js --fix --env browser",
-    "f-stylelint": "node_modules/.bin/stylelint scss/* --config .stylelintrc --fix",
-    "lint": "npm run n-eslint && npm run f-eslint && npm run f-stylelint"
+    "dev": "./node_modules/.bin/gulp watch",
+    "build": "./node_modules/.bin/gulp",
+    "server": "node_modules/.bin/ts-node server/index.ts",
+    "stylelint": "node_modules/.bin/stylelint scss/* --config .stylelintrc --fix",
+    "tslint": "node_modules/.bin/tslint */*.ts",
+    "lint": "npm run tslint && npm run stylelint"
   },
   "repository": {
     "type": "git",
@@ -35,13 +33,21 @@
     "stylelint-scss": "^3.3.1"
   },
   "devDependencies": {
+    "@types/express": "^4.16.0",
+    "@types/hls.js": "^0.10.2",
+    "@types/node": "^10.12.0",
     "eslint": "^5.7.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.11.1",
+    "gulp-typescript": "^5.0.0-alpha.3",
     "nodemon": "^1.18.4",
     "stylelint": "^9.6.0",
-    "stylelint-config-recommended": "^2.1.0"
+    "stylelint-config-recommended": "^2.1.0",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "tslint-config-airbnb": "^5.11.0",
+    "typescript": "^3.1.3"
   }
 }

@@ -1,8 +1,10 @@
+import { Request, Response, NextFunction } from 'express';
+
 const cors = require('cors');
 const express = require('express');
 const bodyParser = require('body-parser');
-const getEvents = require('./getEvents.js');
-const getUptime = require('./getUptime.js');
+const getEvents = require('./getEvents');
+const getUptime = require('./getUptime');
 
 const app = express();
 const port = process.env.PORT || 8000;
@@ -16,14 +18,19 @@ app.post('/status', getUptime);
 app.get('/api/events', getEvents);
 app.post('/api/events', getEvents);
 
-app.get('*', (request, response, next) => {
+app.get('*', (request: Request, response: Response, next: NextFunction) => {
   next({
     code: 404,
     message: '<h1>Page not found</h1>',
   });
 });
 
-app.use((error, req, res, next) => {
+interface Error {
+  code?: number;
+  message?: string;
+}
+
+app.use((error: Error, req: Request, res: Response, next: NextFunction) => {
   const code = error.code || 500;
   const message = error.message || 'Something broke';
   res.status(code);
@@ -31,6 +38,6 @@ app.use((error, req, res, next) => {
   next();
 });
 
-app.listen(port, (error) => {
+app.listen(port, (error: {}) => {
   console.log(error || `server is listening on ${port}`);
 });
