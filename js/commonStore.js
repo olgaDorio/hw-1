@@ -8,6 +8,8 @@ export default () => {
     localStorage.setItem('state', JSON.stringify(state));
   };
 
+  const { pathname } = window.location;
+
   const store = createStore({
     state: {
       events: [],
@@ -19,7 +21,7 @@ export default () => {
         filters: Array.from({ length: 4 }, () => ({ brightness, contrast })),
       },
 
-      route: window.location.pathname || '/index.html',
+      route: pathname.length > 1 ? pathname : '/index.html',
 
       ...JSON.parse(localStorage.state || '{}'),
     },
