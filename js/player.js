@@ -1,7 +1,6 @@
-import router from './router.js';
-import compare from './compare.js';
-import createStore from './commonStore.js';
-import Player from './player/index.js';
+import router from './router';
+import Player from './player/index';
+import createStore from './commonStore';
 
 const store = createStore();
 router(store);
@@ -15,7 +14,7 @@ const onFullscreenChange = (state, oldState) => {
 
   if (current >= 0) {
     player.toggleView(player.wrappers[current], current);
-    player.updateSliders(state.player.filters[current])
+    player.updateSliders(state.player.filters[current]);
   } else if (previous >= 0) {
     player.toggleView(player.wrappers[previous], previous);
     player.updateSliders(state.player.filters[previous]);
@@ -23,7 +22,7 @@ const onFullscreenChange = (state, oldState) => {
 };
 
 const onFiltersChange = (state) => {
-  state.player.filters.forEach(player.updateStyles.bind(player))
+  state.player.filters.forEach(player.updateStyles.bind(player));
 };
 
 store.subscribe('player.fullscreen', onFullscreenChange, true);

@@ -1,6 +1,6 @@
-import createCard from './createCard.js';
-import showTouchNodes from './showTouchNodes.js';
-import addTouchListener from './addTouchListener.js';
+import createCard from './createCard';
+import showTouchNodes from './showTouchNodes';
+import addTouchListener from './addTouchListener';
 
 class Cards {
   constructor(parent) {

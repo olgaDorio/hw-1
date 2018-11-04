@@ -1,14 +1,13 @@
-import router from './router.js';
-import Cards from './cards/index.js';
-import createStore from './commonStore.js';
-import compare from './compare.js';
+import router from './router';
+import Cards from './cards/index';
+import createStore from './commonStore';
 
 const main = document.querySelector('.page__main');
 const cards = new Cards(main);
 
 const store = createStore();
 
-store.dispatch('getEvents')
+store.dispatch('getEvents');
 router(store);
 
 main.addEventListener('scroll', (e) => {
@@ -16,7 +15,7 @@ main.addEventListener('scroll', (e) => {
 });
 
 const mountEvent = (state) => {
-  cards.mount(state.events)
+  cards.mount(state.events);
   cards.scroll(state.scrollTop);
 };
 

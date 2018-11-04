@@ -4,6 +4,6 @@ export default (store) => {
       e.preventDefault();
       const route = e.target.pathname;
       if (route) store.dispatch('setRoute', route);
-    })
-  })
+    });
+  });
 };

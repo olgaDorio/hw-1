@@ -1,6 +1,6 @@
-import Slider from "./slider.js";
-import initVideo from "./initVideo.js";
-import VolumeAnalyser from "./analyser.js";
+import Slider from './slider';
+import initVideo from './initVideo';
+import VolumeAnalyser from './analyser';
 
 class Player {
   constructor(links, fftSize = 256, emit) {

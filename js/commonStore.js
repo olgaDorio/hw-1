@@ -19,7 +19,7 @@ export default () => {
         filters: Array.from({ length: 4 }, () => ({ brightness, contrast })),
       },
 
-      route: location.pathname || '/index.html',
+      route: window.location.pathname || '/index.html',
 
       ...JSON.parse(localStorage.state || '{}'),
     },
@@ -28,10 +28,10 @@ export default () => {
       getEvents(state) {
         fetch('https://agile-plains-47360.herokuapp.com/api/events')
           .then(r => r.json())
-          .then(({array}) => {
+          .then(({ array }) => {
             state.events = array;
           })
-          .catch(console.log)
+          .catch(console.log);
       },
 
       setScroll(state, value) {
@@ -54,10 +54,10 @@ export default () => {
   }, defaultCallback);
 
   store.subscribe('.route', (state) => {
-    if (location.pathname !== state.route) {
+    if (window.location.pathname !== state.route) {
       window.location.assign(`${state.route}`);
     }
-  }, true)
+  }, true);
 
   return store;
 };
