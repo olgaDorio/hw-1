@@ -17,3 +17,5 @@ const showTouchNodes = (root) => {
     node.classList[isMobile ? 'remove' : 'add']('hidden');
   });
 };
+
+export default showTouchNodes;

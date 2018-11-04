@@ -1,4 +1,4 @@
-const addTouchListener = ({
+export default ({
   targetNode,
   imageNode,
   sliderX,

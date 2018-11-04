@@ -111,3 +111,5 @@ function Slider({ slider, onChange }) {
     this.setValue(value || 0);
   });
 }
+
+export default Slider;

@@ -40,7 +40,7 @@ const createIndicator = ({ temperature, humidity }) => {
 };
 
 const createPlayer = (data) => {
-  const node = playerTemplate.querySelector('.player');
+  const node = playerTemplate.cloneNode(true).querySelector('.player');
   node.querySelector('.range--round').value = data.volume;
   node.querySelector('.player__artist').innerHTML = data.artist;
   node.querySelector('.player__volume').innerHTML = data.volume;
@@ -49,7 +49,7 @@ const createPlayer = (data) => {
   return node;
 };
 
-const createCard = (event) => {
+export default (event) => {
   const {
     size, description, data, icon, title, source, time,
   } = event;

@@ -18,10 +18,11 @@ class VolumeAnalyser {
     return dataArray;
   }
 
-  draw({ dataArray }) {
-    const average = dataArray
-      .reduce((prev, curr) => prev + curr, 0) / dataArray.length;
-
+  draw() {
+    const dataArray = this.getData();
+    const average = dataArray.reduce((prev, curr) => prev + curr, 0) / dataArray.length;
     this.bar.style.animationDelay = `-${average}ms`;
   }
 }
+
+export default VolumeAnalyser;

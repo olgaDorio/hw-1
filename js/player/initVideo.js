@@ -1,4 +1,6 @@
-const initVideo = (video, url) => {
+import Hls from 'hls.js';
+
+export default (video, url) => {
   if (Hls.isSupported()) {
     const hls = new Hls();
     hls.loadSource(url);

@@ -56,6 +56,8 @@
   }
 
   &__controls::before {
+    color: var(--coal);
+    font-weight: bold;
     display: block;
     content: 'Видеонаблюдение';
     transition: opacity 0.2s, transform 0.2s, width 0.2s;
