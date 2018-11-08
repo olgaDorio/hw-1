@@ -1,6 +1,7 @@
 import React from "react";
 import Hls from 'hls.js'
 import './../css/video.css'
+import Analyser from './Analyser';
 
 class Monitoring extends React.Component {
   constructor(props) {
@@ -15,8 +16,8 @@ class Monitoring extends React.Component {
       ],
       fullscreen: -1,
       filters: Array.from({ length: 4 }, () => ({
-        brightness: 100,
-        contrast: 100,
+        brightness: 1,
+        contrast: 1,
       })),
     };
   }
@@ -70,7 +71,16 @@ class Monitoring extends React.Component {
     })
   }
 
+  handleInputChange(event) {
+    const filters = this.state.filters;
+    filters[this.state.fullscreen][event.target.name] = event.target.value;
+    this.setState({
+      filters: filters,
+    });
+  }
+
   componentDidMount() {
+    console.log('mount')
     this.videos.filter(Boolean).forEach((video, index) => {
       this.initVideo(video, this.state.links[index]);
     })
@@ -78,19 +88,27 @@ class Monitoring extends React.Component {
 
   render() {
     const elements = this.state.links.map((src, index) => {
+      const { brightness, contrast } = this.state.filters[index];
+
+      const style = {
+        filter: `brightness(${brightness}) contrast(${contrast})`,
+      };
+
       return <div
         className={`video__wrapper ${index === this.state.fullscreen ? 'video--open' : ''}`}
         key={src}
         onClick={this.handleClick.bind(this, index)}
+        style={style}
         >
         <video
           className="video"
           autoPlay="autoplay"
-          muted="muted"
+          muted={index !== this.state.fullscreen}
           loop="loop"
           ref={(video) => {
             this.videos = this.videos || [];
             this.videos.push(video);
+            this.videos = this.videos.filter(Boolean).slice(-4);
           }}
           onClick={this.play.bind(this)}
           onLoadedMetadata={this.play.bind(this)}
@@ -105,17 +123,29 @@ class Monitoring extends React.Component {
 
         <label>
           Яркость
-          <input type="range" value={this.state.fullscreen >= 0 ? this.state.filters[this.state.fullscreen].contrast : 0}/>
+          <input
+            type="range"
+            min="0"
+            name="brightness"
+            max="3"
+            value={this.state.fullscreen >= 0 ? this.state.filters[this.state.fullscreen].brightness : 0}
+            onInput={this.handleInputChange.bind(this)}
+          />
         </label>
 
         <label>
           Контрастность
-          <input type="range" value={this.state.fullscreen >= 0 ? this.state.filters[this.state.fullscreen].brightness : 0}/>
+          <input
+            type="range"
+            min="0"
+            name="contrast"
+            max="3"
+            value={this.state.fullscreen >= 0 ? this.state.filters[this.state.fullscreen].contrast : 0}
+            onInput={this.handleInputChange.bind(this)}
+          />
         </label>
 
-        <div className="video__chart chart">
-          <div className="chart__bar"></div>
-        </div>
+        <Analyser elements={this.videos}/>
       </div>
       <div className="video__container">
         {elements}

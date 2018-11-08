@@ -42,6 +42,7 @@ class Events extends React.Component {
   }
 
   componentDidMount() {
+    // console.log('mount')
     fetch('https://agile-plains-47360.herokuapp.com/api/events')
       .then(r => r.json())
       .then(({ array }) => {
