@@ -1,5 +1,5 @@
 @charset "UTF-8";
-.Slider {
+.slider {
   background-image: -webkit-gradient(linear, left top, right top, color-stop(2%, #FFE682), color-stop(98%, #FF9E00));
   background-image: linear-gradient(90deg, #FFE682 2%, #FF9E00 98%);
   background-position: 100%;
@@ -15,7 +15,7 @@
   background-image: -webkit-gradient(linear, left top, right top, color-stop(2%, #068FFF), color-stop(51%, #FFD800), to(#F76B1C));
   background-image: linear-gradient(90deg, #068FFF 2%, #FFD800 51%, #F76B1C 100%); }
 
-.Circle {
+.circle {
   background: transparent;
   border-radius: 50%;
   border: none;
@@ -50,12 +50,12 @@
     height: 100%;
     background: var(--red); } }
 
-.Chart {
+.chart {
   padding: 10px 10px 0;
   border-left: 1px solid #C5C5C5;
   border-bottom: 1px solid #C5C5C5;
   background-image: repeating-linear-gradient(to bottom, transparent, transparent 23%, rgba(197, 197, 197, 0.3) 25%); }
-  .ChartBar {
+  .chart__bar {
     height: 100%;
     width: 30px;
     display: -webkit-box;
@@ -68,7 +68,7 @@
     -webkit-box-pack: end;
         -ms-flex-pack: end;
             justify-content: flex-end; }
-  .ChartBar::after {
+  .chart__bar::after {
     -webkit-animation-name: grow;
             animation-name: grow;
     -webkit-animation-play-state: paused;
@@ -80,7 +80,7 @@
     display: block;
     content: ''; }
 
-.PagePlayer {
+.page__player {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -90,15 +90,15 @@
           flex-direction: column;
   padding-bottom: 0; }
 
-.Video {
+.video {
   -o-object-fit: cover;
      object-fit: cover;
   width: 100%;
   height: 100%; }
-  .VideoChart {
+  .video__chart {
     height: 50px;
     width: 100px; }
-  .VideoControls {
+  .video__controls {
     padding: 10px;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
@@ -116,21 +116,21 @@
     width: 100%;
     overflow: hidden; }
     @media (max-width: 910px) {
-      .VideoControls {
+      .video__controls {
         height: 200px; } }
-  .VideoControls > * {
+  .video__controls > * {
     -webkit-transition: all 0.2s;
     transition: all 0.2s;
     opacity: 0; }
-  .VideoControls > label {
+  .video__controls > label {
     padding: 10px; }
   .video__controls--shown > * {
     opacity: 1; }
-  .VideoControls > *:first-child {
+  .video__controls > *:first-child {
     margin-right: auto; }
-  .VideoControls > *:last-child {
+  .video__controls > *:last-child {
     margin-left: auto; }
-  .VideoControls::before {
+  .video__controls::before {
     display: block;
     content: 'Видеонаблюдение';
     -webkit-transition: opacity 0.2s, width 0.2s, -webkit-transform 0.2s;
@@ -160,13 +160,13 @@
             flex-grow: 0;
     -webkit-transform: translateX(-100%);
             transform: translateX(-100%); }
-  .VideoContainer {
+  .video__container {
     width: 100%;
     display: grid;
     grid-template-columns: 50% 50%;
     grid-template-rows: 50% 50%;
     height: 100%; }
-  .VideoWrapper {
+  .video__wrapper {
     overflow: hidden;
     background: var(--dark-grey);
     border: 10px solid white;
@@ -184,15 +184,15 @@
     -webkit-transform: scale(2);
             transform: scale(2);
     z-index: 2; }
-  .VideoWrapper:nth-child(1) {
+  .video__wrapper:nth-child(1) {
     -webkit-transform-origin: left top;
             transform-origin: left top; }
-  .VideoWrapper:nth-child(2) {
+  .video__wrapper:nth-child(2) {
     -webkit-transform-origin: right top;
             transform-origin: right top; }
-  .VideoWrapper:nth-child(3) {
+  .video__wrapper:nth-child(3) {
     -webkit-transform-origin: left bottom;
             transform-origin: left bottom; }
-  .VideoWrapper:nth-child(4) {
+  .video__wrapper:nth-child(4) {
     -webkit-transform-origin: right bottom;
             transform-origin: right bottom; }
