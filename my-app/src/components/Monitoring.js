@@ -1,7 +1,12 @@
 import React from "react";
+import { cn, classnames } from '@bem-react/classname';
 import Hls from 'hls.js'
-import './../css/video.css'
+
+import Range from './Range';
+import Button from './Button';
 import Analyser from './Analyser';
+
+import './../css/video.css'
 
 class Monitoring extends React.Component {
   constructor(props) {
@@ -80,13 +85,14 @@ class Monitoring extends React.Component {
   }
 
   componentDidMount() {
-    console.log('mount')
     this.videos.filter(Boolean).forEach((video, index) => {
       this.initVideo(video, this.state.links[index]);
     })
   }
 
   render() {
+    const videoCn = cn('Video');
+
     const elements = this.state.links.map((src, index) => {
       const { brightness, contrast } = this.state.filters[index];
 
@@ -95,15 +101,15 @@ class Monitoring extends React.Component {
       };
 
       return <div
-        className={`video__wrapper ${index === this.state.fullscreen ? 'video--open' : ''}`}
+        className={videoCn('Wrapper', {open: index === this.state.fullscreen})}
         key={src}
         onClick={this.handleClick.bind(this, index)}
-        style={style}
         >
         <video
-          className="video"
+          className={videoCn()}
           autoPlay="autoplay"
           muted={index !== this.state.fullscreen}
+          style={style}
           loop="loop"
           ref={(video) => {
             this.videos = this.videos || [];
@@ -116,38 +122,45 @@ class Monitoring extends React.Component {
       </div>
     })
 
-    // TODO: slider component
-    return <main className="page__main page__player">
-      <div className={`video__controls ${this.state.fullscreen >= 0 ? 'video__controls--shown' : ''}`}>
-        <button className="button button--default" onClick={this.handleClick.bind(this, -1)}>Все камеры</button>
 
-        <label>
-          Яркость
-          <input
-            type="range"
-            min="0"
-            name="brightness"
-            max="3"
-            value={this.state.fullscreen >= 0 ? this.state.filters[this.state.fullscreen].brightness : 0}
-            onInput={this.handleInputChange.bind(this)}
-          />
-        </label>
+    const sliderOptions = [
+      {
+        label: 'Яркость',
+        name: 'brightness'
+      },
+      {
+        label: 'Контрастность',
+        name: 'contrast'
+      }
+    ];
 
-        <label>
-          Контрастность
-          <input
-            type="range"
-            min="0"
-            name="contrast"
-            max="3"
-            value={this.state.fullscreen >= 0 ? this.state.filters[this.state.fullscreen].contrast : 0}
-            onInput={this.handleInputChange.bind(this)}
-          />
-        </label>
+    const sliders = sliderOptions.map(({ label, name }) => {
+      const { fullscreen, filters } = this.state;
+      const value = fullscreen >= 0 ? filters[fullscreen][name] : 0
+      const onInput = this.handleInputChange.bind(this);
+      return (
+        <Range key={name} round={true} min="0" max="3" name={name} value={value} onInput={onInput}>
+          {name}
+        </Range>
+      )
+    })
 
+    const className = classnames(
+        videoCn('Controls'),
+        videoCn('Controls', {
+          shown: this.state.fullscreen >= 0
+        }));
+
+    return <main className={this.props.routeClassName}>
+      <div className={className}>
+        <Button default={true} onClick={this.handleClick.bind(this, -1)}>
+            Все камеры
+        </Button>
+
+        {sliders}
         <Analyser elements={this.videos}/>
       </div>
-      <div className="video__container">
+      <div className={videoCn('Container')}>
         {elements}
       </div>
     </main>

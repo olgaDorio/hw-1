@@ -1,36 +1,18 @@
 import React from "react";
+import { cn } from '@bem-react/classname';
 
-import richdata from './../assets/Richdata.svg';
+import Icon from './Icon';
+import Range from './Range';
+import Button from './Button';
+import ButtonGroup from './ButtonGroup';
+
 import prev from './../assets/prev.svg';
 import bitmap from './../assets/bitmap.jpg';
 import bitmap2 from './../assets/bitmap2.jpg';
 import bitmap3 from './../assets/bitmap3.jpg';
+import richdata from './../assets/Richdata.svg';
 
-import stats from './../assets/stats.svg';
-import key from './../assets/key.svg';
-import robotCleaner from './../assets/robot-cleaner.svg';
-import router from './../assets/router.svg';
-import thermal from './../assets/thermal.svg';
-import ac from './../assets/ac.svg';
-import music from './../assets/music.svg';
-import fridge from './../assets/fridge.svg';
-import battery from './../assets/battery.svg';
-import cam from './../assets/cam.svg';
-import kettle from './../assets/kettle.svg';
-
-const icons = {
-  stats,
-  key,
-  robotCleaner,
-  router,
-  thermal,
-  ac,
-  music,
-  fridge,
-  battery,
-  cam,
-  kettle,
-}
+import './../css/player.css';
 
 class Events extends React.Component {
   constructor(props) {
@@ -42,7 +24,6 @@ class Events extends React.Component {
   }
 
   componentDidMount() {
-    // console.log('mount')
     fetch('https://agile-plains-47360.herokuapp.com/api/events')
       .then(r => r.json())
       .then(({ array }) => {
@@ -62,25 +43,29 @@ class Events extends React.Component {
       let player;
       let buttons;
 
+      const cardCn = cn('Card');
+
       if (event.description) {
-        description = <div className="card__description">{event.description}</div>
+        description = <div className={cardCn('Description')}>{event.description}</div>
       }
 
       if (event.data && event.data.type === 'graph') {
-        image = <img src={richdata} alt="" className="card__image"/>
+        image = <img src={richdata} alt="" className={cardCn('Image')}/>
       }
 
       if (event.data && event.data.temperature) {
-        indicator = <div className="indicator__group">
-          <div className="indicator">
+        const indicatorCn = cn('Indicator');
+
+        indicator = <div className={indicatorCn('Group')}>
+          <div className={indicatorCn()}>
             Температура:&nbsp;
-            <div className="indicator__value">
+            <div className={indicatorCn('Value')}>
               {event.data.temperature} C
             </div>
           </div>
-          <div className="indicator">
+          <div className={indicatorCn()}>
             Влажность:&nbsp;
-            <div className="indicator__value">
+            <div className={indicatorCn('Value')}>
               {event.data.humidity}%
             </div>
           </div>
@@ -88,35 +73,43 @@ class Events extends React.Component {
       }
 
       if (event.data && event.data.albumcover) {
-        player = <div className="player">
-          <div className="player__row">
-          <img className="player__albumcover" src={event.data.albumcover} alt="albumcover"/>
-            <div className="player__column">
-              <div className="player__artist">{event.data.artist}</div>
-              <input className="range" type="range" defaultValue="50"/>
+        const playerCn = cn('Player');
+
+        player = <div className={playerCn()}>
+          <div className={playerCn('Row')}>
+          <img className={playerCn('Albumcover')} src={event.data.albumcover} alt="albumcover"/>
+            <div className={playerCn('Column')}>
+              <div className={playerCn('Artist')}>{event.data.artist}</div>
+              <Range defaultValue="50" min="0" max="100"/>
             </div>
-            <div className="player__duration">{event.data.track.length}</div>
+            <div className={playerCn('Duration')}>{event.data.track.length}</div>
           </div>
-          <div className="player__row">
-            <button className="button player__control">
+          <div className={playerCn('Row')}>
+            <Button className={playerCn('Control')}>
               <img src={prev} alt=""/>
-            </button>
-            <button className="button player__control">
+            </Button>
+            <Button className={playerCn('Control')}>
               <img src={prev} style={{transform: 'rotate(-180deg)'}} alt=""/>
-            </button>
-            <div className="player__column">
-              <input className="range range--round" type="range" min="0" max="100" defaultValue={event.data.volume}/>
+            </Button>
+            <div className={playerCn('Column')}>
+              <Range round min="0" max="100" defaultValue={event.data.volume}/>
             </div>
-            <div className="player__volume">{event.data.volume}%</div>
+            <div className={playerCn('Volume')}>{event.data.volume}%</div>
           </div>
         </div>
       }
 
       if (event.data && event.data.buttons && event.data.buttons.length === 2) {
-        buttons = <div className="button__group">
-          <button className="button button--active">{event.data.buttons[0]}</button>
-          <button className="button">{event.data.buttons[1]}</button>
-        </div>
+        buttons = (
+          <ButtonGroup>
+            <Button active="true">
+              {event.data.buttons[0]}
+            </Button>
+            <Button>
+              {event.data.buttons[1]}
+            </Button>
+          </ButtonGroup>
+        )
       }
 
       if (event.data && event.data.image) {
@@ -131,7 +124,7 @@ class Events extends React.Component {
       }
 
       if (description || image || indicator || player || buttons) {
-        body = <div className="card__body">
+        body = <div className={cardCn('Body')}>
           {description}
           {image}
           {indicator}
@@ -140,15 +133,15 @@ class Events extends React.Component {
         </div>
       }
 
-      return <div key={index} className={`card card--${event.type} card--${event.size} ${!event.description && !event.data ? 'card--small' : ''}`}>
-        <button className="button card__control"></button>
-        <button className="button card__control"></button>
-        <div className="card__header">
-          <div className="card__title">
-            <img className="icon" src={icons[event.icon]} alt=""/>
+      return <div key={index} className={cardCn({size: event.size, type: event.type, compact: !event.description && !event.data})}>
+        <Button className={cardCn('Control')}></Button>
+        <Button className={cardCn('Control')}></Button>
+        <div className={cardCn('Header')}>
+          <div className={cardCn('Title')}>
+            <Icon name={event.icon}/>
             <span>{event.title}</span>
           </div>
-          <div className="card__subtitle">
+          <div className={cardCn('Subtitle')}>
             <div>{event.source}</div>
             <div>{event.time}</div>
           </div>
@@ -159,10 +152,12 @@ class Events extends React.Component {
   }
 
   render() {
-    return <main className="page__main">
-      <h1 className="title">Лента событий</h1>
-      { this.createCards(this.state.events) }
-    </main>
+    return (
+      <main className={this.props.routeClassName}>
+        <h1 className="Title">Лента событий</h1>
+        { this.createCards(this.state.events) }
+      </main>
+    )
   }
 }
 

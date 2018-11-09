@@ -1,0 +1,36 @@
+.Link {
+  opacity: 0.6;
+  font-weight: bold;
+  font-size: 16px;
+  color: var(--coal);
+  line-height: 20px;
+  text-decoration: none;
+}
+
+@media (max-width: 910px) {
+  .Link {
+    display: none;
+  }
+}
+
+.Link+.Link {
+  margin-left: 20px;
+}
+
+.Link_small {
+  font-size: 12px;
+  color: #858585;
+  letter-spacing: 0.01px;
+  font-weight: normal;
+}
+
+
+.Link_separate {
+  margin-left: auto !important;
+}
+
+.Link:focus,
+.Link:active,
+.Link_active {
+  opacity: 1;
+}

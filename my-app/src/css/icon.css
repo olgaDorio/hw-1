@@ -1,0 +1,17 @@
+.Icon {
+  height: auto;
+  margin-right: 20px;
+  max-width: 100%;
+}
+
+@media (max-width: 910px) {
+  .Icon:not(.Icon_logo) {
+    max-width: 35px;
+    max-height: 35px;
+  }
+}
+
+.Icon_logo {
+  height: 27px;
+  width: 108px;
+}

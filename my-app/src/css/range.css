@@ -1,0 +1,132 @@
+.Range {
+  -webkit-appearance: none;
+  margin: 8px 0;
+  width: 100%;
+}
+
+.Range::-moz-focus-outer {
+  border: 0;
+}
+
+.Range::-webkit-slider-runnable-track {
+  background: #979797;
+  border-radius: 2px;
+  cursor: pointer;
+  height: 1px;
+  width: 100%;
+}
+
+.Range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  margin-top: -9.5px;
+  background: #D8D8D8;
+  border-radius: 4.5px;
+  cursor: pointer;
+  height: 20px;
+  width: 12px;
+}
+
+.Range::-moz-range-track {
+  background: #979797;
+  border-radius: 2px;
+  cursor: pointer;
+  height: 1px;
+  width: 100%;
+}
+
+.Range::-moz-range-thumb {
+  border-color: transparent;
+  background: #D8D8D8;
+  border-radius: 4.5px;
+  cursor: pointer;
+  height: 20px;
+  width: 12px;
+}
+
+.Range::-ms-track {
+  color: transparent;
+  background: #979797;
+  border-radius: 2px;
+  cursor: pointer;
+  height: 1px;
+  width: 100%;
+}
+
+.Range::-ms-thumb {
+  margin-top: 1px;
+  border: none;
+  box-shadow: none;
+  background: #D8D8D8;
+  border-radius: 4.5px;
+  cursor: pointer;
+  height: 20px;
+  width: 12px;
+}
+
+.Range:focus {
+  outline: none !important;
+}
+
+.Range_round::-webkit-slider-runnable-track {
+  background: #d8d8d8;
+  border-radius: 2px;
+  cursor: pointer;
+  height: 4px;
+  width: 100%;
+}
+
+.Range_round::-webkit-slider-thumb {
+  margin-top: -6px;
+  background: #605757;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 16px;
+  width: 16px;
+}
+
+.Range_round::-moz-range-track {
+  background: #d8d8d8;
+  border-radius: 2px;
+  cursor: pointer;
+  height: 4px;
+  width: 100%;
+}
+
+.Range_round::-moz-range-thumb {
+  border-color: transparent;
+  background: #605757;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 16px;
+  width: 16px;
+}
+
+.Range_round::-ms-track {
+  color: transparent;
+  background: #d8d8d8;
+  border-radius: 2px;
+  cursor: pointer;
+  height: 4px;
+  width: 100%;
+}
+
+.Range_round::-ms-thumb {
+  margin-top: 1px;
+  border: none;
+  box-shadow: none;
+  background: #605757;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 16px;
+  width: 16px;
+}
+
+.Range-Label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
