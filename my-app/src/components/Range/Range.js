@@ -1,6 +1,6 @@
 import React from "react";
 import { cn } from '@bem-react/classname';
-import './../css/range.css';
+import './range.css';
 
 class Range extends React.Component {
   render() {

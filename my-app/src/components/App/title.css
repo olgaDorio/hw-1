@@ -1,0 +1,13 @@
+.Title {
+  color: var(--coal);
+  font-size: var(--title-font-size);
+  grid-column: span 6;
+  margin: 32px 0;
+  width: 100%;
+}
+
+@media (max-width: 910px) {
+  .Title {
+    margin: 8px 0;
+  }
+}

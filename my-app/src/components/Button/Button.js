@@ -1,6 +1,6 @@
 import React from "react";
 import { cn, classnames } from '@bem-react/classname';
-import './../css/button.css';
+import './button.css';
 
 class Button extends React.Component {
   render() {

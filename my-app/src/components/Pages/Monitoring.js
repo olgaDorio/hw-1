@@ -2,11 +2,11 @@ import React from "react";
 import { cn, classnames } from '@bem-react/classname';
 import Hls from 'hls.js'
 
-import Range from './Range';
-import Button from './Button';
-import Analyser from './Analyser';
+import Range from './../Range/Range';
+import Button from './../Button/Button';
+import Analyser from './../Analyser/Analyser';
 
-import './../css/video.css'
+import './video.css'
 
 class Monitoring extends React.Component {
   constructor(props) {

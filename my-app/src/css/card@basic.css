@@ -205,8 +205,7 @@
   padding: 0 !important;
 }
 
-.Card-Control,
-.Card-Control:hover {
+.Card-Control {
   background-color: transparent !important;
   background-position: center center;
   background-repeat: no-repeat;

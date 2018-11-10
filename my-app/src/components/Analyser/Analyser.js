@@ -1,6 +1,6 @@
 import React from "react";
 import { cn } from '@bem-react/classname';
-import './../css/chart.css';
+import './chart.css';
 
 class Analyser extends React.Component {
   constructor(props) {
