@@ -1,0 +1,37 @@
+.Indicator-Group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: var(--card-tiny-text);
+  margin-top: 22px;
+}
+
+@media (max-width: 910px) {
+  .Indicator-Group {
+    margin-top: 25px;
+  }
+}
+
+.Indicator_separate {
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.Indicator {
+  -webkit-box-align: baseline;
+  -ms-flex-align: baseline;
+  align-items: baseline;
+  color: var(--black);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 50%;
+  flex: 0 0 50%;
+  font-weight: normal;
+}
+
+.Indicator-Value {
+  font-weight: bold;
+}

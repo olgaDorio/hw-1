@@ -1,0 +1,17 @@
+.Card-Control:hover {
+  background-color: transparent !important;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain !@import url();;
+  position: absolute;
+}
+
+.Card:hover {
+  background: var(--dark-grey);
+  -webkit-box-shadow: var(--box-shadow);
+  box-shadow: var(--box-shadow);
+}
+
+.Card:hover .Card-Control {
+  display: block !important;
+}
