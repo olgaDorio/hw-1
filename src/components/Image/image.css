@@ -1,0 +1,36 @@
+.TouchImage {
+  border-radius: 0 !important;
+  height: 100%;
+  left: 0;
+  margin-top: 0 !important;
+  position: absolute;
+  bottom: 0;
+  width: 200% !important;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.TouchImage-Contrainer {
+  border-radius: 20px;
+  height: 300px;
+  margin-top: 30px;
+  max-height: calc(100vh - 100px);
+  overflow: hidden;
+  position: relative;
+  -ms-touch-action: none;
+  touch-action: none;
+}
+
+.TouchImage-Track {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 2px;
+  bottom: 6px;
+  height: 4px;
+  left: 0;
+  position: absolute;
+  -webkit-transform: scaleX(0.8);
+  transform: scaleX(0.8);
+  width: 147px;
+}
