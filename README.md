@@ -21,3 +21,5 @@ npm run n-build
 ```sh
 npm run lint
 ```
+## Где посмотреть
+https://olgadorio.github.io/hw-1/
