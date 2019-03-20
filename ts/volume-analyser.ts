@@ -1,5 +1,20 @@
+interface Window {
+  AudioContext: typeof AudioContext;
+  webkitAudioContext: typeof AudioContext;
+}
+
+declare var window: Window;
+
+interface Draw {
+  dataArray: Uint8Array;
+}
+
 class VolumeAnalyser {
-  constructor(element, fftSize) {
+  bar: any;
+  analyser: any;
+  bufferLength: any;
+
+  constructor(element: HTMLVideoElement, fftSize: Number) {
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     this.analyser = audioCtx.createAnalyser();
     this.bar = document.querySelector('.chart__bar');
@@ -13,15 +28,17 @@ class VolumeAnalyser {
   }
 
   getData() {
-    const dataArray = new Uint8Array(this.bufferLength);
+    const dataArray: Uint8Array = new Uint8Array(this.bufferLength);
     this.analyser.getByteFrequencyData(dataArray);
     return dataArray;
   }
 
-  draw({ dataArray }) {
+  draw({ dataArray }: Draw) {
     const average = dataArray
-      .reduce((prev, curr) => prev + curr, 0) / dataArray.length;
+      .reduce((prev: number, curr: number) => prev + curr, 0) / dataArray.length;
 
     this.bar.style.animationDelay = `-${average}ms`;
   }
 }
+
+export default VolumeAnalyser;

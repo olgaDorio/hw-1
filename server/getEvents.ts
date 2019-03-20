@@ -1,7 +1,9 @@
+import { Request, Response, NextFunction } from 'express';
+
 const { events } = require('./../events.json');
 const { allowedTypes } = require('./../defines.js');
 
-const filter = (array, types) => {
+const filter = (array: { type: string }[], types?: string[]) => {
   if (!types) {
     return array;
   }
@@ -11,7 +13,7 @@ const filter = (array, types) => {
   ));
 };
 
-const slice = (array, params) => {
+const slice = (array: {}[], params: {page: number, amount: number}) => {
   const page = params.page ? Math.abs(params.page) : 0;
   const amount = Math.abs(params.amount) || array.length;
 
@@ -26,11 +28,11 @@ const slice = (array, params) => {
   };
 };
 
-module.exports = (request, response, next) => {
+module.exports = (request: Request, response: Response, next: NextFunction) => {
   const params = { ...request.query, ...request.body };
-  const types = params.type ? params.type.split(':') : '';
+  const types: string[]|undefined = params.type ? params.type.split(':') : undefined;
 
-  if (types && types.some(type => !allowedTypes.includes(type))) {
+  if (types && types.some(type => !!type && !allowedTypes.includes(type))) {
     next({
       code: 400,
       message: JSON.stringify('incorrect type'),

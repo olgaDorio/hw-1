@@ -3,7 +3,27 @@ const gulp = require('gulp');
 const pug = require('gulp-pug');
 const sass = require('gulp-sass');
 const autoprefixer = require('gulp-autoprefixer');
-const { events } = require('./events.json')
+
+var ts = require("gulp-typescript");
+
+var tsProjectIndex = ts.createProject({
+  "target": "es6",
+  "module": "amd",
+  "outFile": "index.js",
+  "lib": ["dom", "es2017", "dom.iterable"],
+  "strict": true,
+  "esModuleInterop": true,
+});
+
+var tsProjectPlayer = ts.createProject({
+  "target": "es6",
+  "module": "amd",
+  "outFile": "player.js",
+  "lib": ["dom", "es2017", "dom.iterable"],
+  "strict": true,
+  "esModuleInterop": true,
+})
+
 
 const destDir = 'docs';
 
@@ -31,21 +51,21 @@ gulp.task('assets', () => {
         .pipe(gulp.dest(destDir + '/assets'));
 });
 
-gulp.task('js', () => {
-    return gulp.src('js/**/*')
-        .pipe(gulp.dest(destDir + '/js'));
+gulp.task('ts-index', () => {
+  return gulp.src("ts/index.ts")
+    .pipe(tsProjectIndex())
+    .js.pipe(gulp.dest(destDir + '/js'));
+});
+
+gulp.task('ts-player', () => {
+  return gulp.src("ts/player.ts")
+    .pipe(tsProjectPlayer())
+    .js.pipe(gulp.dest(destDir + '/js'));
 });
 
 gulp.task('pug', () => {
     return gulp.src('view/**/*.pug')
-
-        .pipe(pug({
-            pretty: true,
-            data: {
-                events: JSON.stringify(events)
-                //events
-            }
-        }))
+        .pipe(pug())
         .on('error', errorHandling)
         .pipe(gulp.dest(destDir));
 });
@@ -54,7 +74,7 @@ gulp.task('watch', ['default'], () => {
     gulp.watch('scss/**/*.scss', ['css']);
     gulp.watch('view/**/*.pug', ['pug']);
     gulp.watch('assets/**/*', ['assets']);
-    gulp.watch('js/**/*', ['js']);
+    gulp.watch('ts/**/*', ['ts-index', 'ts-player']);
 });
 
-gulp.task('default', ['clean', 'pug', 'css', 'assets', 'js']);
+gulp.task('default', ['clean', 'pug', 'css', 'assets', 'ts-player', 'ts-index']);

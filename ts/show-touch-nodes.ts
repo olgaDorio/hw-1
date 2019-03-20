@@ -2,7 +2,7 @@ const isTouchDevice = () => (
   !!navigator.maxTouchPoints && 'ontouchstart' in window
 );
 
-const showTouchNodes = (root) => {
+export default (root: HTMLElement) => {
   const showOnDesktop = document.querySelectorAll('.show-on-desktop');
   const showOnMobile = document.querySelectorAll('.show-on-touch');
 

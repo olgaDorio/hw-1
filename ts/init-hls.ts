@@ -1,4 +1,6 @@
-const initVideo = (video, url) => {
+declare var Hls: any;
+
+export default (video: HTMLVideoElement, url: string) => {
   if (Hls.isSupported()) {
     const hls = new Hls();
     hls.loadSource(url);
@@ -8,7 +10,7 @@ const initVideo = (video, url) => {
       video.play();
     });
 
-    hls.on(Hls.Events.ERROR, (event, data) => {
+    hls.on(Hls.Events.ERROR, (event: {}, data: { fatal?: Boolean, type?: string }) => {
       if (data.fatal) {
         switch (data.type) {
           case Hls.ErrorTypes.NETWORK_ERROR:
